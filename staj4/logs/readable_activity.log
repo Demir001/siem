@@ -1,0 +1,836 @@
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 14:44:09
+LEVEL    : [INFO]
+MODULE   : AUTH_GUARD
+EVENT    : HUMAN_TYPO_TOLERATED
+TARGET/IP: 203.0.113.10
+SUMMARY  : Human password typo tolerated for target 203.0.113.10. (No penalty/ban applied).
+DETAILS  : Tolerated human password typo (1/5) for user 'dev' from 203.0.113.10. No ban applied.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 14:44:09
+LEVEL    : [WARNING]
+MODULE   : AUTH_GUARD
+EVENT    : RAPID_BRUTE_FORCE
+TARGET/IP: 203.0.113.10
+SUMMARY  : High-velocity automated brute-force attack burst detected from 203.0.113.10.
+DETAILS  : Rapid Automated Brute-Force Burst Detected from 203.0.113.10 (2 attempts in 5s).
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 14:44:09
+LEVEL    : [NOTICE]
+MODULE   : AUTH_GUARD
+EVENT    : AUTH_RECOVERY_FORGIVEN
+TARGET/IP: 203.0.113.10
+SUMMARY  : Legitimate authentication succeeded for 203.0.113.10. Past typo failures forgiven.
+DETAILS  : User 'dev' authenticated successfully. Previous 2 password typos forgiven for IP 203.0.113.10.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 14:44:09
+LEVEL    : [WARNING]
+MODULE   : AUTH_GUARD
+EVENT    : DICTIONARY_PROBE
+TARGET/IP: 185.220.101.5
+SUMMARY  : Automated dictionary scanning attack targeting privileged accounts from 185.220.101.5.
+DETAILS  : Malicious Dictionary Probe targeting privileged user 'root' from 185.220.101.5.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 14:44:09
+LEVEL    : [CRITICAL]
+MODULE   : BAN_MANAGER
+EVENT    : EXTERNAL_IP_BAN
+TARGET/IP: 185.220.101.5
+SUMMARY  : EXTERNAL WAN IP 185.220.101.5 dropped on firewall due to security violations.
+DETAILS  : [EXTERNAL] IP 185.220.101.5 BANNED for 60 MINUTES (CRITICAL Level). Enforcement: FIREWALL_DROP. Reason: C2 Reverse Shell Exploit. (Auto-Unban Time: 2026-08-14 15:44:09)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 14:44:09
+LEVEL    : [CRITICAL]
+MODULE   : BAN_MANAGER
+EVENT    : INTERNAL_IP_BAN
+TARGET/IP: 192.168.1.45
+SUMMARY  : INTERNAL LAN IP 192.168.1.45 quarantined/isolated due to hostile activity.
+DETAILS  : [INTERNAL] IP 192.168.1.45 BANNED for 15 MINUTES (CRITICAL Level). Enforcement: SESSION_PORT_ISOLATION. Reason: Unauthorized Root Escalation. (Auto-Unban Time: 2026-08-14 14:59:09)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 14:44:09
+LEVEL    : [WARNING]
+MODULE   : BAN_MANAGER
+EVENT    : INTERNAL_IP_BAN
+TARGET/IP: 192.168.1.99
+SUMMARY  : INTERNAL LAN IP 192.168.1.99 quarantined/isolated due to hostile activity.
+DETAILS  : [INTERNAL] IP 192.168.1.99 BANNED for 5 MINUTES (HIGH Level). Enforcement: SESSION_PORT_ISOLATION. Reason: Zero-Day Script Probe. (Auto-Unban Time: 2026-08-14 14:49:09)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:05:01
+LEVEL    : [WARNING]
+MODULE   : AUTH_GUARD
+EVENT    : DICTIONARY_PROBE
+TARGET/IP: 198.51.100.55
+SUMMARY  : Automated dictionary scanning attack targeting privileged accounts from 198.51.100.55.
+DETAILS  : Malicious Dictionary Probe targeting privileged user 'admin' from 198.51.100.55.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:05:01
+LEVEL    : [WARNING]
+MODULE   : AUTH_GUARD
+EVENT    : DICTIONARY_PROBE
+TARGET/IP: 198.51.100.55
+SUMMARY  : Automated dictionary scanning attack targeting privileged accounts from 198.51.100.55.
+DETAILS  : Malicious Dictionary Probe targeting privileged user 'root' from 198.51.100.55.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:05:01
+LEVEL    : [WARNING]
+MODULE   : BAN_MANAGER
+EVENT    : INTERNAL_IP_BAN
+TARGET/IP: 198.51.100.55
+SUMMARY  : INTERNAL LAN IP 198.51.100.55 quarantined/isolated due to hostile activity.
+DETAILS  : [INTERNAL] IP 198.51.100.55 BANNED for 5 MINUTES (HIGH Level). Enforcement: SESSION_PORT_ISOLATION. Reason: Cumulative Risk Exceeded (80.0/50 - 2 Events - Triggered by AI_ATTACK_DETECTED). (Auto-Unban Time: 2026-08-14 16:10:01)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:05:01
+LEVEL    : [WARNING]
+MODULE   : AUTH_GUARD
+EVENT    : DICTIONARY_PROBE
+TARGET/IP: 198.51.100.55
+SUMMARY  : Automated dictionary scanning attack targeting privileged accounts from 198.51.100.55.
+DETAILS  : Malicious Dictionary Probe targeting privileged user 'support' from 198.51.100.55.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:05:01
+LEVEL    : [NOTICE]
+MODULE   : SESSION_TRACKER
+EVENT    : USER_LOGIN
+TARGET/IP: 192.168.1.75
+SUMMARY  : USER_LOGIN event recorded for target 192.168.1.75. (User 'hacker_user' logged in successfully. (IP: 192.168.1.75 | Terminal: pts/1))
+DETAILS  : User 'hacker_user' logged in successfully. (IP: 192.168.1.75 | Terminal: pts/1)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:05:01
+LEVEL    : [CRITICAL]
+MODULE   : USER_ACTIVITY
+EVENT    : COMMAND_DESTRUCTIVE_MUTATION
+TARGET/IP: 192.168.1.75
+SUMMARY  : AI [ATTACK] (99.5% Confidence) | Web Application Attack (SQLi/XSS/XXE/LFI) (MITRE T1190 - APPLICATION_EXPLOIT) detected from 192.168.1.75.
+DETAILS  : Session [SESS_hacker_user_192.168.1.75_pts_1_1786712701]: User 'hacker_user' executed 'rm -rf / --no-preserve-root'. (Summary: Dangerous Destructive System Data Wipe Attempt)
+AI ENGINE: Verdict: ATTACK (Confidence: 99.46914255780653%) | Layer: 1. Layer (Pure-NumPy Ensemble)
+TAXONOMY : MITRE: T1190 | Category: APPLICATION_EXPLOIT
+PLAYBOOK : Block source IP on firewall; inspect web server access logs and patch vulnerable endpoint.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:05:02
+LEVEL    : [CRITICAL]
+MODULE   : BAN_MANAGER
+EVENT    : INTERNAL_IP_BAN
+TARGET/IP: 192.168.1.75
+SUMMARY  : INTERNAL LAN IP 192.168.1.75 quarantined/isolated due to hostile activity.
+DETAILS  : [INTERNAL] IP 192.168.1.75 BANNED for 15 MINUTES (CRITICAL Level). Enforcement: SESSION_PORT_ISOLATION. Reason: Session Hostile Activity: 'rm -rf / --no-preserve-root' (CRITICAL Level - Risk: 90). (Auto-Unban Time: 2026-08-14 16:20:01)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:15:22
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [NOTICE]
+MODULE   : SESSION_TRACKER
+EVENT    : USER_LOGIN
+TARGET/IP: 192.168.1.10
+SUMMARY  : USER_LOGIN event recorded for target 192.168.1.10. (User 'developer' logged in via SSH.)
+DETAILS  : User 'developer' logged in via SSH.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:15:22
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : AUTH_GUARD
+EVENT    : HUMAN_TYPO_TOLERATED
+TARGET/IP: 192.168.1.10
+SUMMARY  : Human password typo tolerated for target 192.168.1.10. (Safe Operation - No ban applied).
+DETAILS  : Password typo 1/5 tolerated.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:15:22
+STATUS   : [MALICIOUS ATTACK (ZARARLI SALDIRI İŞLEMİ)]
+LEVEL    : [CRITICAL]
+MODULE   : SIEM_MONITOR
+EVENT    : AI_ATTACK_DETECTED
+TARGET/IP: 185.220.101.5
+SUMMARY  : AI [ATTACK] (99.8% Confidence) | Command & Control / Reverse Shell (MITRE T1071 - NETWORK_C2) detected from 185.220.101.5.
+DETAILS  : Reverse shell launched.
+AI ENGINE: Verdict: ATTACK (Confidence: 99.8%) | Layer: 1. Layer (Pure-NumPy Ensemble)
+TAXONOMY : MITRE: T1071 | Category: NETWORK_C2
+PLAYBOOK : Sever outbound connection and block IP.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:15:34
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [NOTICE]
+MODULE   : SESSION_TRACKER
+EVENT    : USER_LOGIN
+TARGET/IP: 192.168.1.10
+SUMMARY  : USER_LOGIN event recorded for target 192.168.1.10. (User 'developer' logged in via SSH.)
+DETAILS  : User 'developer' logged in via SSH.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:15:34
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : AUTH_GUARD
+EVENT    : HUMAN_TYPO_TOLERATED
+TARGET/IP: 192.168.1.10
+SUMMARY  : Human password typo tolerated for target 192.168.1.10. (Safe Operation - No ban applied).
+DETAILS  : Password typo 1/5 tolerated.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:15:34
+STATUS   : [MALICIOUS ATTACK (ZARARLI SALDIRI İŞLEMİ)]
+LEVEL    : [CRITICAL]
+MODULE   : SIEM_MONITOR
+EVENT    : AI_ATTACK_DETECTED
+TARGET/IP: 185.220.101.5
+SUMMARY  : AI [ATTACK] (99.8% Confidence) | Command & Control / Reverse Shell (MITRE T1071 - NETWORK_C2) detected from 185.220.101.5.
+DETAILS  : Reverse shell launched.
+AI ENGINE: Verdict: ATTACK (Confidence: 99.8%) | Layer: 1. Layer (Pure-NumPy Ensemble)
+TAXONOMY : MITRE: T1071 | Category: NETWORK_C2
+PLAYBOOK : Sever outbound connection and block IP.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:19:58
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : AUTH_GUARD
+EVENT    : HUMAN_TYPO_TOLERATED
+TARGET/IP: 203.0.113.88
+SUMMARY  : Human password typo tolerated for target 203.0.113.88. (Safe Operation - No ban applied).
+DETAILS  : Tolerated human password typo (1/5) for user 'hacker' from 203.0.113.88. No ban applied.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:19:59
+STATUS   : [MALICIOUS OPERATION (ZARARLI İŞLEM)]
+LEVEL    : [CRITICAL]
+MODULE   : BAN_MANAGER
+EVENT    : INTERNAL_IP_BAN
+TARGET/IP: 198.51.100.1
+SUMMARY  : INTERNAL LAN IP 198.51.100.1 quarantined/isolated due to hostile activity.
+DETAILS  : [INTERNAL] IP 198.51.100.1 BANNED for 15 MINUTES (CRITICAL Level). Enforcement: SESSION_PORT_ISOLATION. Reason: Cumulative Risk Exceeded (85.0/50 - 1 Events - Triggered by BASH_DEV_TCP_SHELL). (Auto-Unban Time: 2026-08-14 16:34:59)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:33:16
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [NOTICE]
+MODULE   : SESSION_TRACKER
+EVENT    : USER_LOGIN
+TARGET/IP: 192.168.1.20
+SUMMARY  : USER_LOGIN event recorded for target 192.168.1.20. (User 'developer' logged in successfully. (IP: 192.168.1.20 | Terminal: pts/0))
+DETAILS  : User 'developer' logged in successfully. (IP: 192.168.1.20 | Terminal: pts/0)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:33:17
+STATUS   : [MALICIOUS OPERATION (ZARARLI İŞLEM)]
+LEVEL    : [CRITICAL]
+MODULE   : BAN_MANAGER
+EVENT    : EXTERNAL_IP_BAN
+TARGET/IP: 194.26.29.112
+SUMMARY  : EXTERNAL WAN IP 194.26.29.112 dropped on firewall due to security violations.
+DETAILS  : [EXTERNAL] IP 194.26.29.112 BANNED for 60 MINUTES (CRITICAL Level). Enforcement: FIREWALL_DROP. Reason: Cumulative Risk Exceeded (75.0/50 - 1 Events - Triggered by AI_ATTACK_DETECTED). (Auto-Unban Time: 2026-08-14 17:33:17)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:33:18
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [NOTICE]
+MODULE   : SESSION_TRACKER
+EVENT    : USER_LOGIN
+TARGET/IP: 192.168.1.88
+SUMMARY  : USER_LOGIN event recorded for target 192.168.1.88. (User 'bad_actor' logged in successfully. (IP: 192.168.1.88 | Terminal: pts/2))
+DETAILS  : User 'bad_actor' logged in successfully. (IP: 192.168.1.88 | Terminal: pts/2)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:33:18
+STATUS   : [MALICIOUS ATTACK (ZARARLI SALDIRI İŞLEMİ)]
+LEVEL    : [CRITICAL]
+MODULE   : USER_ACTIVITY
+EVENT    : COMMAND_DESTRUCTIVE_MUTATION
+TARGET/IP: 192.168.1.88
+SUMMARY  : AI [ATTACK] (99.5% Confidence) | Web Application Attack (SQLi/XSS/XXE/LFI) (MITRE T1190 - APPLICATION_EXPLOIT) detected from 192.168.1.88.
+DETAILS  : Session [SESS_bad_actor_192.168.1.88_pts_2_1786714398]: User 'bad_actor' executed 'rm -rf / --no-preserve-root'. (Summary: Dangerous Destructive System Data Wipe Attempt)
+AI ENGINE: Verdict: ATTACK (Confidence: 99.46914255780653%) | Layer: 1. Layer (Pure-NumPy Ensemble)
+TAXONOMY : MITRE: T1190 | Category: APPLICATION_EXPLOIT
+PLAYBOOK : Block source IP on firewall; inspect web server access logs and patch vulnerable endpoint.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-14 16:33:18
+STATUS   : [MALICIOUS OPERATION (ZARARLI İŞLEM)]
+LEVEL    : [CRITICAL]
+MODULE   : BAN_MANAGER
+EVENT    : INTERNAL_IP_BAN
+TARGET/IP: 192.168.1.88
+SUMMARY  : INTERNAL LAN IP 192.168.1.88 quarantined/isolated due to hostile activity.
+DETAILS  : [INTERNAL] IP 192.168.1.88 BANNED for 15 MINUTES (CRITICAL Level). Enforcement: SESSION_PORT_ISOLATION. Reason: Session Hostile Activity: 'rm -rf / --no-preserve-root' (CRITICAL Level - Risk: 90). (Auto-Unban Time: 2026-08-14 16:48:18)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 17:21:37
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : SYSTEM
+EVENT    : SYSTEM_START
+TARGET/IP: LOCAL
+SUMMARY  : SYSTEM_START event recorded for target LOCAL. (SIEM Monitoring Service Initialized.)
+DETAILS  : SIEM Monitoring Service Initialized.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 17:21:44
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : SYSTEM
+EVENT    : SYSTEM_START
+TARGET/IP: LOCAL
+SUMMARY  : SYSTEM_START event recorded for target LOCAL. (SIEM Monitoring Service Initialized.)
+DETAILS  : SIEM Monitoring Service Initialized.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 17:21:52
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : BAN_MANAGER
+EVENT    : IP_AUTOMATIC_UNBAN
+TARGET/IP: 185.220.101.5
+SUMMARY  : IP 185.220.101.5 temporary ban expired; unbanned from firewall automatically.
+DETAILS  : Ban duration expired for EXTERNAL IP 185.220.101.5; automatically unbanned.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 17:21:52
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : BAN_MANAGER
+EVENT    : IP_AUTOMATIC_UNBAN
+TARGET/IP: 192.168.1.45
+SUMMARY  : IP 192.168.1.45 temporary ban expired; unbanned from firewall automatically.
+DETAILS  : Ban duration expired for INTERNAL IP 192.168.1.45; automatically unbanned.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 17:21:52
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : BAN_MANAGER
+EVENT    : IP_AUTOMATIC_UNBAN
+TARGET/IP: 192.168.1.99
+SUMMARY  : IP 192.168.1.99 temporary ban expired; unbanned from firewall automatically.
+DETAILS  : Ban duration expired for INTERNAL IP 192.168.1.99; automatically unbanned.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 17:21:52
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : BAN_MANAGER
+EVENT    : IP_AUTOMATIC_UNBAN
+TARGET/IP: 198.51.100.55
+SUMMARY  : IP 198.51.100.55 temporary ban expired; unbanned from firewall automatically.
+DETAILS  : Ban duration expired for INTERNAL IP 198.51.100.55; automatically unbanned.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 17:21:52
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : BAN_MANAGER
+EVENT    : IP_AUTOMATIC_UNBAN
+TARGET/IP: 192.168.1.75
+SUMMARY  : IP 192.168.1.75 temporary ban expired; unbanned from firewall automatically.
+DETAILS  : Ban duration expired for INTERNAL IP 192.168.1.75; automatically unbanned.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 17:21:52
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : BAN_MANAGER
+EVENT    : IP_AUTOMATIC_UNBAN
+TARGET/IP: 198.51.100.1
+SUMMARY  : IP 198.51.100.1 temporary ban expired; unbanned from firewall automatically.
+DETAILS  : Ban duration expired for INTERNAL IP 198.51.100.1; automatically unbanned.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 17:21:52
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : BAN_MANAGER
+EVENT    : IP_AUTOMATIC_UNBAN
+TARGET/IP: 194.26.29.112
+SUMMARY  : IP 194.26.29.112 temporary ban expired; unbanned from firewall automatically.
+DETAILS  : Ban duration expired for EXTERNAL IP 194.26.29.112; automatically unbanned.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 17:21:52
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : BAN_MANAGER
+EVENT    : IP_AUTOMATIC_UNBAN
+TARGET/IP: 192.168.1.88
+SUMMARY  : IP 192.168.1.88 temporary ban expired; unbanned from firewall automatically.
+DETAILS  : Ban duration expired for INTERNAL IP 192.168.1.88; automatically unbanned.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 17:23:52
+STATUS   : [MALICIOUS OPERATION (ZARARLI İŞLEM)]
+LEVEL    : [WARNING]
+MODULE   : BAN_MANAGER
+EVENT    : INTERNAL_IP_BAN
+TARGET/IP: 198.51.100.99
+SUMMARY  : INTERNAL LAN IP 198.51.100.99 quarantined/isolated due to hostile activity.
+DETAILS  : [INTERNAL] IP 198.51.100.99 BANNED for 5 MINUTES (HIGH Level). Enforcement: SESSION_PORT_ISOLATION. Reason: Test Ban 1. (Auto-Unban Time: 2026-08-18 17:28:52)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 17:23:52
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : BAN_MANAGER
+EVENT    : IP_AUTOMATIC_UNBAN
+TARGET/IP: 198.51.100.99
+SUMMARY  : IP 198.51.100.99 temporary ban expired; unbanned from firewall automatically.
+DETAILS  : Ban duration expired for INTERNAL IP 198.51.100.99; automatically unbanned.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 18:00:02
+STATUS   : [MALICIOUS OPERATION (ZARARLI İŞLEM)]
+LEVEL    : [WARNING]
+MODULE   : BAN_MANAGER
+EVENT    : INTERNAL_IP_BAN
+TARGET/IP: 198.51.100.33
+SUMMARY  : INTERNAL LAN IP 198.51.100.33 quarantined/isolated due to hostile activity.
+DETAILS  : [INTERNAL] IP 198.51.100.33 BANNED for 5 MINUTES (HIGH Level). Enforcement: SSH_SESSION_KILL_AND_ISOLATE. Reason: Test High Threat. (Auto-Unban Time: 2026-08-18 18:05:02)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 18:00:02
+STATUS   : [MALICIOUS OPERATION (ZARARLI İŞLEM)]
+LEVEL    : [WARNING]
+MODULE   : AUTH_GUARD
+EVENT    : DICTIONARY_PROBE
+TARGET/IP: 198.51.100.44
+SUMMARY  : Automated dictionary scanning attack targeting privileged accounts from 198.51.100.44.
+DETAILS  : Malicious Dictionary Probe targeting privileged user 'root' from 198.51.100.44.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 18:00:02
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [NOTICE]
+MODULE   : SESSION_TRACKER
+EVENT    : USER_LOGIN
+TARGET/IP: 198.51.100.55
+SUMMARY  : USER_LOGIN event recorded for target 198.51.100.55. (User 'testuser' logged in successfully. (IP: 198.51.100.55 | Terminal: pts/1))
+DETAILS  : User 'testuser' logged in successfully. (IP: 198.51.100.55 | Terminal: pts/1)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 18:00:02
+STATUS   : [MALICIOUS ATTACK (ZARARLI SALDIRI İŞLEMİ)]
+LEVEL    : [CRITICAL]
+MODULE   : USER_ACTIVITY
+EVENT    : COMMAND_SENSITIVE_FILE_READ
+TARGET/IP: 198.51.100.55
+SUMMARY  : AI [ATTACK] (100.0% Confidence) | Privilege Escalation / Integrity Violation (MITRE T1068 - SYSTEM_INTEGRITY) detected from 198.51.100.55.
+DETAILS  : Session [SESS_testuser_198.51.100.55_pts_1_1787065202]: User 'testuser' executed 'cat /etc/shadow'. (Summary: Unauthorized Sensitive Credential/Privilege File Read)
+AI ENGINE: Verdict: ATTACK (Confidence: 100.0%) | Layer: 0. Layer (Deterministic Guardrail)
+TAXONOMY : MITRE: T1068 | Category: SYSTEM_INTEGRITY
+PLAYBOOK : Isolate user session; inspect sudoers and SUID binaries; verify file integrity.
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 18:00:03
+STATUS   : [MALICIOUS OPERATION (ZARARLI İŞLEM)]
+LEVEL    : [CRITICAL]
+MODULE   : BAN_MANAGER
+EVENT    : INTERNAL_IP_BAN
+TARGET/IP: 198.51.100.55
+SUMMARY  : INTERNAL LAN IP 198.51.100.55 quarantined/isolated due to hostile activity.
+DETAILS  : [INTERNAL] IP 198.51.100.55 BANNED for 30 MINUTES (CRITICAL Level). Enforcement: SSH_SESSION_KILL_AND_ISOLATE. Reason: Session Hostile Activity: 'cat /etc/shadow' (CRITICAL Level - Risk: 75). (Auto-Unban Time: 2026-08-18 18:30:03)
+------------------------------------------------------------------
+------------------------------------------------------------------
+TIMESTAMP: 2026-08-18 18:00:03
+STATUS   : [SAFE OPERATION (GÜVENLİ İŞLEM)]
+LEVEL    : [INFO]
+MODULE   : BAN_MANAGER
+EVENT    : IP_AUTOMATIC_UNBAN
+TARGET/IP: 198.51.100.33
+SUMMARY  : IP 198.51.100.33 temporary ban expired; unbanned from firewall automatically.
+DETAILS  : Ban duration expired for INTERNAL IP 198.51.100.33; automatically unbanned.
+------------------------------------------------------------------
+[2026-08-18 18:17:47] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 2001:db8::1 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 2001:db8::1 SSH isolated due to security violations.
+  Details: [INTERNAL] IP 2001:db8::1 BANNED for 15 MINUTES (CRITICAL Level). Enforcement: SSH_SESSION_KILL_AND_ISOLATE. Reason: Test IPv6 Brute Force. (Auto-Unban Time: 2026-08-18 18:32:47)
+---------------------------------------------------------------------------
+[2026-08-18 18:17:47] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [IP_AUTOMATIC_UNBAN]
+  Target: 2001:db8::1 | MITRE: N/A | AI Verdict: N/A
+  Summary: Ban duration expired for INTERNAL IP 2001:db8::1; automatically unbanned.
+  Details: Ban duration expired for INTERNAL IP 2001:db8::1; automatically unbanned.
+---------------------------------------------------------------------------
+[2026-08-18 18:26:51] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [EXTERNAL_SUBNET_/_CIDR_BAN]
+  Target: 185.220.101.0/24 | MITRE: N/A | AI Verdict: N/A
+  Summary: [EXTERNAL] SUBNET / CIDR 185.220.101.0/24 BANNED for 120 MINUTES (CRITICAL Level). Enforcement: UFW_IPTABLES_DUAL_DROP. Reason: Distributed Botnet Sweep. (Auto-Unban Time: 2026-08-
+  Details: [EXTERNAL] SUBNET / CIDR 185.220.101.0/24 BANNED for 120 MINUTES (CRITICAL Level). Enforcement: UFW_IPTABLES_DUAL_DROP. Reason: Distributed Botnet Sweep. (Auto-Unban Time: 2026-08-18 20:26:51)
+---------------------------------------------------------------------------
+[2026-08-18 18:26:51] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [IP_AUTOMATIC_UNBAN]
+  Target: 185.220.101.0/24 | MITRE: N/A | AI Verdict: N/A
+  Summary: Ban duration expired for EXTERNAL target 185.220.101.0/24; automatically unbanned.
+  Details: Ban duration expired for EXTERNAL target 185.220.101.0/24; automatically unbanned.
+---------------------------------------------------------------------------
+[2026-08-18 18:29:14] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [EXTERNAL_SUBNET_/_CIDR_BAN]
+  Target: 185.220.101.0/24 | MITRE: N/A | AI Verdict: N/A
+  Summary: [EXTERNAL] SUBNET / CIDR 185.220.101.0/24 BANNED for 240 MINUTES (CRITICAL Level). Enforcement: UFW_IPTABLES_DUAL_DROP. Reason: Distributed Botnet Sweep. (Auto-Unban Time: 2026-08-
+  Details: [EXTERNAL] SUBNET / CIDR 185.220.101.0/24 BANNED for 240 MINUTES (CRITICAL Level). Enforcement: UFW_IPTABLES_DUAL_DROP. Reason: Distributed Botnet Sweep. (Auto-Unban Time: 2026-08-18 22:29:14)
+---------------------------------------------------------------------------
+[2026-08-18 18:29:14] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [IP_AUTOMATIC_UNBAN]
+  Target: 185.220.101.0/24 | MITRE: N/A | AI Verdict: N/A
+  Summary: Ban duration expired for EXTERNAL target 185.220.101.0/24; automatically unbanned.
+  Details: Ban duration expired for EXTERNAL target 185.220.101.0/24; automatically unbanned.
+---------------------------------------------------------------------------
+[2026-08-18 18:32:15] [WARNING ] [MALICIOUS OPERATION] [BAN_MANAGER] [EXTERNAL_IP_BAN]
+  Target: 91.189.91.43 | MITRE: N/A | AI Verdict: N/A
+  Summary: EXTERNAL WAN IP 91.189.91.43 dropped on firewall due to security violations.
+  Details: [EXTERNAL] IP 91.189.91.43 BANNED for 0 MINUTES (MEDIUM Level). Enforcement: UFW_IPTABLES_DUAL_DROP. Reason: Unit Test. (Auto-Unban Time: 2026-08-18 18:32:16)
+---------------------------------------------------------------------------
+[2026-08-18 18:32:16] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [IP_AUTOMATIC_UNBAN]
+  Target: 91.189.91.43 | MITRE: N/A | AI Verdict: N/A
+  Summary: Ban duration expired for EXTERNAL target 91.189.91.43; automatically unbanned.
+  Details: Ban duration expired for EXTERNAL target 91.189.91.43; automatically unbanned.
+---------------------------------------------------------------------------
+[2026-08-18 18:32:16] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.55 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'alice' logged in successfully. (IP: 192.168.1.55 | Terminal: pts/3)
+  Details: User 'alice' logged in successfully. (IP: 192.168.1.55 | Terminal: pts/3)
+---------------------------------------------------------------------------
+[2026-08-18 18:32:16] [INFO    ] [SAFE OPERATION] [SESSION_SUMMARY] [ROUTINE_ACTIVITY]
+  Target: 192.168.1.55 | MITRE: N/A | AI Verdict: N/A
+  Summary: Session [SESS_alice_192.168.1.55_pts_3_1787067136]: User 'alice' executed 1 routine commands. (Samples: ls -la...)
+  Details: Session [SESS_alice_192.168.1.55_pts_3_1787067136]: User 'alice' executed 1 routine commands. (Samples: ls -la...)
+---------------------------------------------------------------------------
+[2026-08-18 18:32:16] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGOUT]
+  Target: 192.168.1.55 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'alice' logged out. (IP: 192.168.1.55 | Terminal: pts/3)
+  Details: User 'alice' logged out. (IP: 192.168.1.55 | Terminal: pts/3)
+---------------------------------------------------------------------------
+[2026-08-18 18:38:41] [WARNING ] [SUSPICIOUS / WARNING] [SIEM_MONITOR] [HIGH_RAM_USAGE]
+  Target: RAM | MITRE: N/A | AI Verdict: N/A
+  Summary: High RAM Usage Detected! Utilization: 91.5% | Top Process: VirtualBoxVM.exe
+  Details: High RAM Usage Detected! Utilization: 91.5% | Top Process: VirtualBoxVM.exe
+---------------------------------------------------------------------------
+[2026-08-18 18:39:10] [WARNING ] [SUSPICIOUS / WARNING] [SIEM_MONITOR] [CPU_CORE_OVERLOAD]
+  Target: Core_4 | MITRE: N/A | AI Verdict: N/A
+  Summary: CPU Core 4 Overloaded! Utilization: 95.5%
+  Details: CPU Core 4 Overloaded! Utilization: 95.5%
+---------------------------------------------------------------------------
+[2026-08-18 18:42:21] [CRITICAL] [MALICIOUS OPERATION] [FILE_INTEGRITY] [FILE_INTEGRITY_MODIFIED]
+  Target: test_fim_target.conf | MITRE: N/A | AI Verdict: N/A
+  Summary: Critical System File Integrity Breach detected on 'test_fim_target.conf'.
+  Details: CRITICAL TAMPER ALERT! Unauthorized mutation in 'test_fim_target.conf'! (Old: 4bd602a2fb1f... -> New: e62003e6c8fe...)
+---------------------------------------------------------------------------
+[2026-08-18 18:42:21] [CRITICAL] [MALICIOUS OPERATION] [FILE_INTEGRITY] [FILE_INTEGRITY_DELETED]
+  Target: test_fim_target.conf | MITRE: N/A | AI Verdict: N/A
+  Summary: Critical System File Integrity Breach detected on 'test_fim_target.conf'.
+  Details: CRITICAL TAMPER ALERT! Monitored file 'test_fim_target.conf' was DELETED from disk!
+---------------------------------------------------------------------------
+[2026-08-19 10:28:51] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.77 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 198.51.100.77 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 10:28:51] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 198.51.100.77. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (1/8) for user 'root' from 198.51.100.77. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:28:51] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 198.51.100.77. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (2/8) for user 'root' from 198.51.100.77. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:28:51] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 198.51.100.77. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (3/8) for user 'root' from 198.51.100.77. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:28:51] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 198.51.100.77. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (4/8) for user 'root' from 198.51.100.77. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:28:51] [WARNING ] [MALICIOUS OPERATION] [AUTH_GUARD] [RAPID_BRUTE_FORCE]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: High-velocity automated brute-force attack burst detected from 198.51.100.77.
+  Details: Rapid Automated Brute-Force Burst Detected from 198.51.100.77 (5 attempts in 3s).
+---------------------------------------------------------------------------
+[2026-08-19 10:29:36] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.77 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 198.51.100.77 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 10:29:36] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 198.51.100.77. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (1/8) for user 'root' from 198.51.100.77. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:36] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 198.51.100.77. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (2/8) for user 'root' from 198.51.100.77. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:36] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 198.51.100.77. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (3/8) for user 'root' from 198.51.100.77. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:36] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 198.51.100.77. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (4/8) for user 'root' from 198.51.100.77. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:36] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 198.51.100.77. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (5/8) for user 'root' from 198.51.100.77. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:36] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 198.51.100.77. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (6/8) for user 'root' from 198.51.100.77. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:36] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 198.51.100.77. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (7/8) for user 'root' from 198.51.100.77. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:36] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 198.51.100.77. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (8/8) for user 'root' from 198.51.100.77. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:36] [WARNING ] [MALICIOUS OPERATION] [AUTH_GUARD] [RAPID_BRUTE_FORCE]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: High-velocity automated brute-force attack burst detected from 198.51.100.77.
+  Details: Rapid Automated Brute-Force Burst Detected from 198.51.100.77 (9 attempts in 3s).
+---------------------------------------------------------------------------
+[2026-08-19 10:29:36] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 198.51.100.77 SSH isolated due to security violations.
+  Details: Target 198.51.100.77 (INTERNAL) restricted for 5 mins. Reason: Password Retry Limit Exceeded (9/8)
+---------------------------------------------------------------------------
+[2026-08-19 10:29:36] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.77 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 198.51.100.77 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 10:29:46] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 203.0.113.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 203.0.113.88 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 203.0.113.88 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 10:29:46] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 203.0.113.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 203.0.113.88. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (1/8) for user 'root' from 203.0.113.88. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:46] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 203.0.113.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 203.0.113.88. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (2/8) for user 'root' from 203.0.113.88. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:46] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 203.0.113.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 203.0.113.88. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (3/8) for user 'root' from 203.0.113.88. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:46] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 203.0.113.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 203.0.113.88. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (4/8) for user 'root' from 203.0.113.88. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:46] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 203.0.113.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 203.0.113.88. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (5/8) for user 'root' from 203.0.113.88. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:46] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 203.0.113.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 203.0.113.88. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (6/8) for user 'root' from 203.0.113.88. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:46] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 203.0.113.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 203.0.113.88. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (7/8) for user 'root' from 203.0.113.88. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:46] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 203.0.113.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 203.0.113.88. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (8/8) for user 'root' from 203.0.113.88. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 10:29:46] [WARNING ] [MALICIOUS OPERATION] [AUTH_GUARD] [RAPID_BRUTE_FORCE]
+  Target: 203.0.113.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: High-velocity automated brute-force attack burst detected from 203.0.113.88.
+  Details: Rapid Automated Brute-Force Burst Detected from 203.0.113.88 (9 attempts in 3s).
+---------------------------------------------------------------------------
+[2026-08-19 10:29:46] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 203.0.113.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 203.0.113.88 SSH isolated due to security violations.
+  Details: Target 203.0.113.88 (INTERNAL) restricted for 5 mins. Reason: SSH Password Retry Limit Exceeded (9/8 Failed Attempts - RAPID_BRUTE_FORCE_ATTACK)
+---------------------------------------------------------------------------
+[2026-08-19 10:29:46] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 203.0.113.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 203.0.113.88 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 203.0.113.88 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 10:37:54] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.77 restriction lifted! Reason: Manual Admin Unban
+  Details: Network: [INTERNAL] | Target: 198.51.100.77 restriction lifted! Reason: Manual Admin Unban
+---------------------------------------------------------------------------
+[2026-08-19 12:09:55] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.99 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.99 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 198.51.100.99 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 12:10:41] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.99 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.99 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 198.51.100.99 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 12:13:04] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.99 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.99 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 198.51.100.99 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 12:13:23] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.99 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.99 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 198.51.100.99 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 12:13:37] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 45.33.32.156 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [EXTERNAL] | Target: 45.33.32.156 restriction lifted! Reason: Manual Unban
+  Details: Network: [EXTERNAL] | Target: 45.33.32.156 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 12:18:00] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 45.33.32.156 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [EXTERNAL] | Target: 45.33.32.156 restriction lifted! Reason: Manual Unban
+  Details: Network: [EXTERNAL] | Target: 45.33.32.156 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 12:18:00] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [EXTERNAL_IP_BAN]
+  Target: 45.33.32.0/24 | MITRE: N/A | AI Verdict: N/A
+  Summary: EXTERNAL WAN IP 45.33.32.0/24 dropped on firewall due to security violations.
+  Details: Target 45.33.32.0/24 (EXTERNAL) restricted for 120 mins. Reason: Distributed Botnet Detected: 1 distinct attacking IPs across 45.33.32.0/24 (Subnet Risk: 75.0)
+---------------------------------------------------------------------------
+[2026-08-19 12:18:00] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 45.33.32.156 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [EXTERNAL] | Target: 45.33.32.156 restriction lifted! Reason: Manual Unban
+  Details: Network: [EXTERNAL] | Target: 45.33.32.156 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 45.33.32.0/24 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [EXTERNAL] | Target: 45.33.32.0/24 restriction lifted! Reason: Manual Admin Master Flush
+  Details: Network: [EXTERNAL] | Target: 45.33.32.0/24 restriction lifted! Reason: Manual Admin Master Flush
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 198.51.100.10 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 198.51.100.10 SSH isolated due to security violations.
+  Details: Target 198.51.100.10 (INTERNAL) restricted for 5 mins. Reason: Multi-Thread Test for 198.51.100.10
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 198.51.100.11 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 198.51.100.11 SSH isolated due to security violations.
+  Details: Target 198.51.100.11 (INTERNAL) restricted for 5 mins. Reason: Multi-Thread Test for 198.51.100.11
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 198.51.100.12 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 198.51.100.12 SSH isolated due to security violations.
+  Details: Target 198.51.100.12 (INTERNAL) restricted for 5 mins. Reason: Multi-Thread Test for 198.51.100.12
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 198.51.100.13 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 198.51.100.13 SSH isolated due to security violations.
+  Details: Target 198.51.100.13 (INTERNAL) restricted for 5 mins. Reason: Multi-Thread Test for 198.51.100.13
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 198.51.100.14 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 198.51.100.14 SSH isolated due to security violations.
+  Details: Target 198.51.100.14 (INTERNAL) restricted for 5 mins. Reason: Multi-Thread Test for 198.51.100.14
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 198.51.100.15 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 198.51.100.15 SSH isolated due to security violations.
+  Details: Target 198.51.100.15 (INTERNAL) restricted for 5 mins. Reason: Multi-Thread Test for 198.51.100.15
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 198.51.100.16 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 198.51.100.16 SSH isolated due to security violations.
+  Details: Target 198.51.100.16 (INTERNAL) restricted for 5 mins. Reason: Multi-Thread Test for 198.51.100.16
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 198.51.100.17 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 198.51.100.17 SSH isolated due to security violations.
+  Details: Target 198.51.100.17 (INTERNAL) restricted for 5 mins. Reason: Multi-Thread Test for 198.51.100.17
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 198.51.100.18 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 198.51.100.18 SSH isolated due to security violations.
+  Details: Target 198.51.100.18 (INTERNAL) restricted for 5 mins. Reason: Multi-Thread Test for 198.51.100.18
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 198.51.100.19 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 198.51.100.19 SSH isolated due to security violations.
+  Details: Target 198.51.100.19 (INTERNAL) restricted for 5 mins. Reason: Multi-Thread Test for 198.51.100.19
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 203.0.113.0/24 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 203.0.113.0/24 SSH isolated due to security violations.
+  Details: Target 203.0.113.0/24 (INTERNAL) restricted for 10 mins. Reason: Botnet Subnet Test
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 203.0.113.45 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 203.0.113.45 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 203.0.113.45 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.10 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.10 restriction lifted! Reason: Manual Admin Master Flush
+  Details: Network: [INTERNAL] | Target: 198.51.100.10 restriction lifted! Reason: Manual Admin Master Flush
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.11 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.11 restriction lifted! Reason: Manual Admin Master Flush
+  Details: Network: [INTERNAL] | Target: 198.51.100.11 restriction lifted! Reason: Manual Admin Master Flush
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.12 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.12 restriction lifted! Reason: Manual Admin Master Flush
+  Details: Network: [INTERNAL] | Target: 198.51.100.12 restriction lifted! Reason: Manual Admin Master Flush
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.13 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.13 restriction lifted! Reason: Manual Admin Master Flush
+  Details: Network: [INTERNAL] | Target: 198.51.100.13 restriction lifted! Reason: Manual Admin Master Flush
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.14 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.14 restriction lifted! Reason: Manual Admin Master Flush
+  Details: Network: [INTERNAL] | Target: 198.51.100.14 restriction lifted! Reason: Manual Admin Master Flush
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.15 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.15 restriction lifted! Reason: Manual Admin Master Flush
+  Details: Network: [INTERNAL] | Target: 198.51.100.15 restriction lifted! Reason: Manual Admin Master Flush
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.16 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.16 restriction lifted! Reason: Manual Admin Master Flush
+  Details: Network: [INTERNAL] | Target: 198.51.100.16 restriction lifted! Reason: Manual Admin Master Flush
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.17 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.17 restriction lifted! Reason: Manual Admin Master Flush
+  Details: Network: [INTERNAL] | Target: 198.51.100.17 restriction lifted! Reason: Manual Admin Master Flush
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.18 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.18 restriction lifted! Reason: Manual Admin Master Flush
+  Details: Network: [INTERNAL] | Target: 198.51.100.18 restriction lifted! Reason: Manual Admin Master Flush
+---------------------------------------------------------------------------
+[2026-08-19 12:21:56] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.19 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.19 restriction lifted! Reason: Manual Admin Master Flush
+  Details: Network: [INTERNAL] | Target: 198.51.100.19 restriction lifted! Reason: Manual Admin Master Flush
+---------------------------------------------------------------------------

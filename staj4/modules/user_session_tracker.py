@@ -473,4 +473,4 @@ class UserSessionTracker:
                     last_timeout_check = now
             except Exception as e:
                 print(f"[-] Session Tracking Loop Error: {e}")
-            time.sleep(0.3)
+            time.sleep(0.05)

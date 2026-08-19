@@ -24,7 +24,23 @@ class LogIntegrityGuard:
     def __init__(self, key_path: str = None):
         self.key_path = key_path or getattr(config, 'LOG_SECRET_KEY_PATH', '.log_secret.key')
         self.secret_key = self._load_or_generate_key()
-        self.last_hash = GENESIS_HASH
+        self.last_hash = self._init_last_hash()
+
+    def _init_last_hash(self, log_path: str = "logs/activity_records.jsonl") -> str:
+        """
+        Resumes the HMAC-SHA256 blockchain hash chain from the last sealed record on disk.
+        """
+        if os.path.exists(log_path):
+            try:
+                import json
+                with open(log_path, "r", encoding="utf-8") as f:
+                    lines = [l.strip() for l in f if l.strip()]
+                    if lines:
+                        last_rec = json.loads(lines[-1])
+                        return last_rec.get("hmac_seal", GENESIS_HASH)
+            except Exception:
+                pass
+        return GENESIS_HASH
 
     def _load_or_generate_key(self) -> bytes:
         """

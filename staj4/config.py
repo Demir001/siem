@@ -29,6 +29,7 @@ SYSTEM_LOG_PATHS = [
     "/var/log/messages",      # RHEL/CentOS System Logs
     "/var/log/ufw.log",       # UFW Firewall Packet Drop Logs
     "/var/log/kern.log",      # Kernel & Hardware Logs
+    "/var/log/audit/audit.log",# Linux Kernel Audit (Auditd) Syscall Logs
     "logs/auth.log",          # Local Test Auth Log
     "logs/syslog"             # Local Test Syslog Log
 ]

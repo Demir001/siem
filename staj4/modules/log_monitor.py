@@ -151,7 +151,9 @@ class LogMonitor:
             "BASH_DEV_TCP_SHELL": (re.compile(r"bash -i >& /dev/tcp/([^\s/]+)/\d+"), 85),
             "TTY_ALLOCATION_GRANT": (re.compile(r"grantpt: allocated pty slave device for UID (\d+)"), 20),
             "SUID_BINARY_EXECUTION": (re.compile(r"SUID binary '(.*)' executed by non-root UID (\d+)"), 50),
-            "SHADOW_FILE_ACCESS": (re.compile(r"unauthorized read attempt on /etc/shadow by (\w+)"), 75),
+            "SHADOW_FILE_ACCESS": (re.compile(r"(?:unauthorized read attempt on /etc/shadow by (\w+)|type=EXECVE.*(?:/etc/shadow|shadow)|type=PATH.*name=\"/etc/shadow\")"), 75),
+            "AUDIT_REVERSE_SHELL": (re.compile(r"type=EXECVE.*(?:/dev/tcp/|nc\s+-e|ncat\s+-e|socket\.connect)"), 85),
+            "AUDIT_SUID_BACKDOOR": (re.compile(r"type=EXECVE.*(?:chmod\s+4755|chmod\s+\+s)"), 75),
             "CRON_JOB_ADDED": (re.compile(r"CRON.*\((\w+)\) CMD \(.*([^\s:]+).*\)"), 45),
 
             # CATEGORY 9: KERNEL & HARDWARE ANOMALIES (10 RULES)

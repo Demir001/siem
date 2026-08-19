@@ -211,19 +211,22 @@ class UserSessionTracker:
 
             # Immediate hostile action intercept & session kill
             if risk_score >= 70 or session["cumulative_risk"] >= 50:
+                # 1. Terminate hostile interactive terminal session immediately
+                if os.name != 'nt':
+                    try:
+                        clean_tty = tty.replace("/dev/", "")
+                        is_root = (hasattr(os, 'geteuid') and os.geteuid() == 0)
+                        kill_cmd = f"pkill -9 -t {clean_tty}" if is_root else f"sudo -n pkill -9 -t {clean_tty}"
+                        subprocess.run(kill_cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=2)
+                    except Exception:
+                        pass
+
+                # 2. Ban IP on firewall if not protected
                 if not self.ban_manager.is_banned(actual_ip) and not self.ban_manager.is_protected_ip(actual_ip):
                     ban_reason = f"Session Hostile Activity: '{command}' ({criticality} Level - Risk: {session['cumulative_risk']})"
                     self.ban_manager.ban_ip(ip=actual_ip, criticality=criticality, reason=ban_reason)
-                    session["cumulative_risk"] = 0
-                    
-                    if os.name != 'nt':
-                        try:
-                            clean_tty = tty.replace("/dev/", "")
-                            is_root = (hasattr(os, 'geteuid') and os.geteuid() == 0)
-                            kill_cmd = f"pkill -9 -t {clean_tty}" if is_root else f"sudo -n pkill -9 -t {clean_tty}"
-                            subprocess.run(kill_cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=2)
-                        except Exception:
-                            pass
+                
+                session["cumulative_risk"] = 0
 
     def analyze_command_context(self, username, command):
         """
@@ -245,17 +248,17 @@ class UserSessionTracker:
         if ("curl" in cmd_lower or "wget" in cmd_lower) and ("| bash" in cmd_lower or "| sh" in cmd_lower or "| perl" in cmd_lower):
             return "UNVERIFIED_SCRIPT_PIPE", 80, True, "Unverified Remote Web Script Piped Directly into Shell", ai_res, "HIGH"
 
-        is_shadow_read = "/etc/shadow" in cmd_lower and any(b in cmd_lower for b in ["cat", "head", "tail", "less", "more", "awk", "sed", "nl", "xxd", "hexdump", "strings", "grep", "cut", "python", "perl", "open("])
+        is_shadow_read = any(s in cmd_lower for s in ["/etc/shadow", "etc/shadow", "s?ad*w", "sha\\"]) and any(b in cmd_lower for b in ["cat", "head", "tail", "less", "more", "awk", "sed", "nl", "xxd", "hexdump", "strings", "grep", "cut", "python", "perl", "open(", "find", "c?t"])
         if is_shadow_read:
             return "SENSITIVE_FILE_READ", 75, True, "Unauthorized Sensitive Credential File Read (/etc/shadow)", ai_res, "CRITICAL"
             
-        if any(w in cmd_lower for w in ["sudo su", "su -", "pkexec", "doas", "chmod +s /bin/bash", "chmod 4755"]):
-            return "PRIVILEGE_ESCALATION", 70, True, "Privilege Elevation / SUID Backdoor Spawned", ai_res, "HIGH"
+        if any(w in cmd_lower for w in ["chmod +s /bin/bash", "chmod 4755", "chmod u+s /bin", "pkexec /bin/sh", "--checkpoint-action=exec", "checkpoint-action", "apt::update::pre-invoke", "nopasswd", "sudoers.d"]):
+            return "PRIVILEGE_ESCALATION", 75, True, "Privilege Elevation / GTFOBins Backdoor Manipulation", ai_res, "CRITICAL"
 
-        if any(w in cmd_lower for w in ["nc -e", "ncat -e", "/dev/tcp/", "socat exec", "mkfifo /tmp/f"]):
+        if any(w in cmd_lower for w in ["nc -e", "ncat -e", "/dev/tcp/", "socat exec", "mkfifo", "mknod"]):
             return "REVERSE_SHELL_ATTEMPT", 85, True, "Outbound Reverse Shell Connection Attempt", ai_res, "CRITICAL"
 
-        if ("python" in cmd_lower or "perl" in cmd_lower or "php" in cmd_lower) and "-c " in cmd_lower and any(k in cmd_lower for k in ["socket", "pty", "subprocess", "exec", "b64decode"]):
+        if ("python" in cmd_lower or "perl" in cmd_lower or "php" in cmd_lower) and "-c " in cmd_lower and any(k in cmd_lower for k in ["socket", "pty", "subprocess", "exec", "b64decode", "zlib"]):
             return "INLINE_INTERPRETER_EXEC", 60, True, "Inline Command-Line Code String Injection Execution", ai_res, "HIGH"
 
         # 3. AI Security Engine Anomaly / Attack Classification

@@ -212,9 +212,10 @@ class DeterministicGuardrail:
             "SYSTEM_INTEGRITY": [
                 re.compile(r"(?i)\b(?:chmod\s+[0-7]*4[0-7]{3}|chmod\s+[0-7]*6[0-7]{3}|chmod\s+\+s|chmod\s+u\+s|chown\s+root)\b"), # SUID manipülasyonu
                 re.compile(r"(?i)\b(?:LD_PRELOAD|LD_LIBRARY_PATH)=/"), # Kütüphane ele geçirme
-                re.compile(r"(?i)\b(?:echo\s+.*>>\s*/etc/sudoers|chmod\s+777\s+/etc/sudoers|setcap\s+cap_setuid\+ep)\b"),
+                re.compile(r"(?i)\b(?:echo\s+.*>>\s*/etc/sudoers|chmod\s+777\s+/etc/sudoers|setcap\s+cap_setuid\+ep|sudoers\.d|NOPASSWD)\b"),
                 re.compile(r"(?i)\b(?:cat\s+/etc/shadow|dd\s+if=/dev/zero\s+of=/dev/|rm\s+-rf\s+/|chattr\s+-i\s+/etc/shadow|chmod\s+777\s+/etc/shadow)\b"),
                 re.compile(r"(?i)\b(?:find\s+/\s+-perm\s+-4000|export\s+PATH=/tmp:\$PATH|pam_exec\.so.*expose_authtok)\b"),
+                re.compile(r"(?i)\b(?:--checkpoint-action=exec|APT::Update::Pre-Invoke|checkpoint-action)\b"),
                 re.compile(r"(?i)user management updated /etc/shadow for unauthorized"),
                 re.compile(r"(?i)COMMAND=.*(?:vim\s+-c\s+':!/bin/sh'|find\s+\.\s+-exec\s+/bin/sh|awk\s+'BEGIN\s*\{system\(\"/bin/sh\"\)\}'|python3\s+-c\s+.*os\.execl.*sh|perl\s+-e\s+.*(?:exec|system).*sh|env\s+/bin/sh|capsh\s+--gid=0|flock\s+-u\s+/\s+/bin/sh|tar\s+-cf.*checkpoint-action=exec=/bin/sh|zip\s+.*--unzip-command=.*sh|strace\s+-o\s+/dev/null\s+/bin/sh)")
             ],
@@ -302,7 +303,24 @@ class DeterministicGuardrail:
             re.compile(r"(?i)\b(?:man\s+\w+|less\s+[\w\./\-]+|cat\s+[\w\./\-]+\.md|git\s+log|git\s+show|git\s+checkout|git\s+status|git\s+diff|git\s+branch)\b"),
             re.compile(r"(?i)\b(?:visudo\s+-c|sudo\s+visudo|grep\s+.*sudoers)\b"),
             re.compile(r"(?i)\bssh-(?:rsa|ed25519|dss)\s+[A-Za-z0-9+/=]+\b"),
-            re.compile(r"(?i)^\s*(?:df\s*-[a-z0-9]+|du\s*-[a-z0-9]+|free\s*-[a-z0-9]+|uptime|top|htop|ls\b|ls\s+-[a-z0-9]+|pwd|whoami|id|uname\s*-[a-z0-9]+|hostname|date|ps\s*-[a-z0-9]+)\s*$")
+            re.compile(
+                r'(?i)^\s*(?:sudo\s+(?:-u\s+\w+\s+|-[a-z0-9]+\s+)*)?'
+                r'(?:/(?:usr/)?(?:local/)?(?:bin|sbin)/)?'
+                r'(?:'
+                r'ls|dir|vdir|pwd|echo|printf|clear|reset|'
+                r'df|du|free|uptime|top|htop|ps|pstree|pgrep|pidof|who|w|whoami|id|groups|'
+                r'cat|head|tail|less|more|grep|egrep|fgrep|wc|sort|uniq|diff|cmp|file|stat|'
+                r'uname|hostname|date|cal|timedatectl|'
+                r'systemctl(?:\s+(?:status|is-active|is-failed|list-\w+|daemon-reload|restart|start|stop))?|'
+                r'service\s+\w+\s+(?:status|start|stop|restart)|'
+                r'apt(?:\s+(?:list|search|show|update|clean|autoclean))?|dpkg\s+-[a-z0-9]+|'
+                r'docker\s+(?:ps|images|logs|inspect|version|info)|'
+                r'git\s+(?:status|log|show|diff|branch|checkout|pull|fetch)|'
+                r'netstat|ss|ip\s+(?:addr|route|link|neigh)|ifconfig|ping|traceroute|dig|host|nslookup|'
+                r'nano|vim|vi|touch|mkdir|cp|mv|tar|zip|unzip|gzip|gunzip|'
+                r'journalctl|dmesg|last|lastlog|su\b|sudo\s+su\b'
+                r')(?:\s+.*)?$'
+            )
         ]
 
     def check(self, log_line: str) -> dict:

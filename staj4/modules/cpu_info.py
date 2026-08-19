@@ -15,6 +15,8 @@ import config
 class CPU_Manager:
     def __init__(self, callback=None):
         self.callback = callback
+        # Warmup CPU counters
+        psutil.cpu_percent(interval=None, percpu=True)
 
     def get_top_process_cpu(self):
         """
@@ -50,7 +52,7 @@ class CPU_Manager:
         """
         Samples CPU metrics and triggers threshold alerts.
         """
-        cpu_per_core = psutil.cpu_percent(interval=1.0, percpu=True)
+        cpu_per_core = psutil.cpu_percent(interval=None, percpu=True)
         cpu_usage = sum(cpu_per_core) / len(cpu_per_core) if cpu_per_core else 0.0
         core_threshold = getattr(config, 'CPU_USAGE_BY_CORE_THRESHOLD', 95.0)
 

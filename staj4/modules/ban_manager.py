@@ -187,6 +187,9 @@ class BanManager:
             return True
         if ip in self.dynamic_protected_ips:
             return True
+        configured_protected = getattr(config, 'PROTECTED_IPS', [])
+        if ip in configured_protected:
+            return True
         return False
 
     def register_auth_failure(self, ip: str, username: str = "unknown") -> tuple[bool, str, int]:
@@ -204,6 +207,12 @@ class BanManager:
         with self.lock:
             # 1. Filter failures within the sliding window (10 minutes)
             recent_failures = [t for t in self.auth_failure_history[ip] if now - t <= 600]
+            
+            # Deduplicate multi-line SSH log artifacts for the exact same connection attempt (within 0.3s)
+            if recent_failures and (now - recent_failures[-1] < 0.3):
+                failure_count = len(recent_failures)
+                return (failure_count > max_typos), "DUPLICATE_AUTH_LOG_IGNORED", failure_count
+
             recent_failures.append(now)
             self.auth_failure_history[ip] = recent_failures
             failure_count = len(recent_failures)

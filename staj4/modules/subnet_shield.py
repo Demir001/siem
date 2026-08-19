@@ -91,8 +91,8 @@ class SubnetShield:
         distinct_threshold = getattr(config, 'SUBNET_DISTINCT_IPS_THRESHOLD', 3)
         risk_threshold = getattr(config, 'SUBNET_RISK_THRESHOLD', 75.0)
 
-        # 4. Check if distributed botnet threshold is breached
-        if distinct_count >= distinct_threshold or total_risk >= risk_threshold:
+        # 4. Check if distributed botnet threshold is breached (Requires multiple rotating IPs)
+        if (distinct_count >= distinct_threshold) or (distinct_count >= 2 and total_risk >= risk_threshold):
             return True, subnet, total_risk, distinct_count
 
         return False, subnet, total_risk, distinct_count

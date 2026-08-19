@@ -125,12 +125,37 @@ class DataBaseManager:
             print(f"[-] IP Log Query Error: {e}")
             return []
 
+    def purge_expired_records(self, retention_days=30):
+        """
+        Purges historical logs and closed user sessions older than retention_days (Default: 30 Days).
+        Runs a WAL checkpoint to reclaim disk space.
+        """
+        cutoff_time = time.time() - (retention_days * 86400)
+        cutoff_date_str = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(cutoff_time))
+        try:
+            with get_db_connection(self.database_name) as conn:
+                cursor = conn.cursor()
+                cursor.execute("CREATE TABLE IF NOT EXISTS activity_logs (id INTEGER PRIMARY KEY, timestamp TEXT)")
+                cursor.execute("CREATE TABLE IF NOT EXISTS session_activity_logs (id INTEGER PRIMARY KEY, timestamp TEXT)")
+                cursor.execute("CREATE TABLE IF NOT EXISTS user_sessions (session_id TEXT PRIMARY KEY, logout_time REAL)")
+                cursor.execute("CREATE TABLE IF NOT EXISTS banned_ips (ip TEXT PRIMARY KEY, expires_at REAL)")
+                
+                cursor.execute("DELETE FROM activity_logs WHERE timestamp < ?", (cutoff_date_str,))
+                cursor.execute("DELETE FROM session_activity_logs WHERE timestamp < ?", (cutoff_date_str,))
+                cursor.execute("DELETE FROM user_sessions WHERE logout_time > 0 AND logout_time < ?", (cutoff_time,))
+                cursor.execute("DELETE FROM banned_ips WHERE is_active = 0 AND unban_at > 0 AND unban_at < ?", (time.time() - 86400,))
+                conn.commit()
+                conn.execute("PRAGMA wal_checkpoint(TRUNCATE);")
+        except Exception as e:
+            print(f"[-] Database Retention Purge Error: {e}")
+
     def start(self):
         """
-        Starts the Database Manager.
+        Starts the Database Manager and cleans expired historical records.
         """
         try:
             self.init_tables()
+            self.purge_expired_records(retention_days=getattr(config, 'LOG_RETENTION_DAYS', 30))
             print(f"[+] Database Connection Established (WAL Mode Active | {self.database_name}): {time.ctime()}")
         except Exception as e:
             print(f"[-] Database Connection Error: {e}")

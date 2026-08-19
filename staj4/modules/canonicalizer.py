@@ -70,11 +70,15 @@ class PayloadCanonicalizer:
         """
         Normalizes shell quote splitting and variable slicing:
         - /b'i'n/b"a"s'h -> /bin/bash
+        - c"a"t /e't'c -> cat /etc
         - $IFS -> space
         - ${PATH:0:1} -> /
         """
         res = SHELL_IFS_PATTERN.sub(' ', text)
-        res = SHELL_QUOTE_CONCAT.sub('', res)
+        # Word-internal quote slicing only (preserves SQL and parameter quotes)
+        res = re.sub(r"(?<=\w)['\"](?=\w)", "", res)
+        res = re.sub(r"(?<=/)['\"](?=\w)", "", res)
+        res = re.sub(r"(?<=\w)['\"](?=/)", "", res)
         res = res.replace('${PATH:0:1}', '/')
         return res
 

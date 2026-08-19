@@ -3,11 +3,12 @@
 ==============================================================================
 EMAIL ALERT NOTIFICATION SERVICE (alert.py)
 ==============================================================================
-This module dispatches high-priority email alerts via SMTP when enabled.
+This module dispatches high-priority email alerts asynchronously via SMTP.
 ==============================================================================
 """
 
 import smtplib
+import threading
 import config
 
 class Alert:
@@ -24,18 +25,24 @@ class Alert:
         """
         return getattr(config, 'ENABLE_EMAIL_ALERTS', False) and getattr(config, 'SMTP_ENABLED', False)
 
-    def send_alert(self, message):
+    def _async_send_worker(self, message: str):
         """
-        Transmits an alert message via SMTP.
+        Transmits email alert asynchronously with a 5-second connection timeout.
         """
-        if not self.is_enabled():
-            return
-
         try:
-            with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
+            with smtplib.SMTP(self.smtp_server, self.smtp_port, timeout=5.0) as server:
                 server.starttls()
                 server.login(self.sender_email, self.email_password)
                 server.sendmail(self.sender_email, self.receiver_email, message)
                 print(f"[+] Alert Email Dispatched to {self.receiver_email}")
         except Exception as e:
             print(f"[-] Email Dispatch Error: {e}")
+
+    def send_alert(self, message: str):
+        """
+        Spawns a non-blocking background thread to dispatch the email alert.
+        """
+        if not self.is_enabled():
+            return
+
+        threading.Thread(target=self._async_send_worker, args=(message,), daemon=True).start()

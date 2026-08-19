@@ -19,9 +19,21 @@ This module orchestrates all 12 monitoring & defense subsystems:
 ==============================================================================
 """
 
+import os
 import time
 import threading
 import config
+
+# Optimize Linux file descriptor limits (prevents EMFILE / 'Too many open files' error)
+if os.name != 'nt':
+    try:
+        import resource
+        soft, hard = resource.getrlimit(resource.RLIMIT_NOFILE)
+        target_limit = min(65536, hard)
+        if soft < target_limit:
+            resource.setrlimit(resource.RLIMIT_NOFILE, (target_limit, hard))
+    except Exception:
+        pass
 
 # Subsystem Imports
 from modules.smart_logger import SmartLogger

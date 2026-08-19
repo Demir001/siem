@@ -18,8 +18,9 @@ import config
 from modules.ban_manager import BanManager
 from modules.smart_logger import SmartLogger
 
-SUSPICIOUS_C2_BINARIES = {"nc", "ncat", "netcat", "socat", "bash", "sh", "zsh", "dash", "perl", "ruby", "lua"}
-SAFE_STANDARD_PORTS = {80, 443, 53, 123, 22, 993, 995, 465, 587, 853}
+RAW_C2_TUNNEL_BINARIES = {"nc", "ncat", "netcat", "socat"}
+GENERIC_SHELLS = {"bash", "sh", "zsh", "dash", "perl", "ruby", "lua", "python", "python3", "node"}
+SAFE_STANDARD_PORTS = {80, 443, 53, 123, 22, 993, 995, 465, 587, 853, 8080, 8443, 8000, 3000, 5000, 5173, 5432, 3306, 27017, 6379, 9000, 9200, 2222}
 
 class C2Detector:
     def __init__(self, ban_manager=None, callback=None, logger=None):
@@ -55,7 +56,7 @@ class C2Detector:
             if not pid or self.ban_manager.is_internal_ip(dst_ip) or self.ban_manager.is_protected_ip(dst_ip):
                 continue
 
-            # Check if destination port is a suspicious non-standard port
+            # Check if destination port is a non-standard port
             is_non_standard = dst_port not in SAFE_STANDARD_PORTS
 
             try:
@@ -63,10 +64,15 @@ class C2Detector:
                 p_name = proc.name().lower()
                 cmdline = " ".join(proc.cmdline()).lower()
 
-                is_suspicious_bin = any(b in p_name for b in SUSPICIOUS_C2_BINARIES)
-                has_shell_flags = any(k in cmdline for k in ["/dev/tcp", "-e /bin", "pty.spawn", "socket.socket", "connect("])
+                # Dedicated network tunneling tools (nc, ncat, socat)
+                is_tunnel_tool = any(b in p_name for b in RAW_C2_TUNNEL_BINARIES)
+                # Specific hostile socket redirections
+                has_shell_flags = any(k in cmdline for k in ["/dev/tcp", "-e /bin", "-e /usr/bin", "pty.spawn", "socket.socket", "socket.tcp", "connect(", "mknod /tmp"])
 
-                if (is_suspicious_bin and is_non_standard) or has_shell_flags:
+                # Trigger C2 intercept ONLY on verified reverse shells or unapproved tunneling tools
+                is_verified_c2 = has_shell_flags or (is_tunnel_tool and is_non_standard)
+
+                if is_verified_c2:
                     reason_msg = f"Outbound Reverse Shell / C2 Connection to {dst_ip}:{dst_port} by PID {pid} ({p_name})"
                     print(f"\n[!] [C2 INTERCEPT ALERT] {reason_msg}")
 

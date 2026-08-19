@@ -114,7 +114,6 @@ FIM_MONITORED_PATHS = [
     "/etc/ssh/sshd_config",
     "/etc/crontab",
     "/etc/hosts",
-    "/etc/resolv.conf",
     "/etc/ld.so.preload",
     "/root/.ssh/authorized_keys",
     "config.py"                          # Core configuration integrity watch
@@ -122,7 +121,7 @@ FIM_MONITORED_PATHS = [
 
 # 13. Honeypot Decoy Port Traps
 ENABLE_HONEYPOT_TRAPS = True             # Enable decoy TCP port traps
-HONEYPOT_PORTS = [23, 2323, 5555, 6379, 8080, 8888] # Decoy TCP ports to trap scanners
+HONEYPOT_PORTS = [23, 2323, 5555, 6379, 4444, 31337] # Decoy TCP ports to trap scanners (Avoids web dev ports 8080/8888)
 HONEYPOT_BAN_DURATION_SECONDS = 86400    # 24 Hours ban for honeypot probe offenders
 
 # 14. Cryptographic HMAC-SHA256 Log Integrity Chain

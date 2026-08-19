@@ -59,10 +59,10 @@ class LogMonitor:
             "SSH_LOGOUT": (re.compile(r"Disconnected from (?:user (\w+) )?([^\s:]+)"), 0),
             "SSH_PREAUTH_SCAN": (re.compile(r"Did not receive identification string from ([^\s:]+)"), 20),
             "SSH_MAX_AUTH_EXCEEDED": (re.compile(r"error: maximum authentication attempts exceeded for (\w+)(?: from ([^\s:]+))?"), 35),
-            "SSH_ROOT_LOGIN_ATTEMPT": (re.compile(r"Accepted (?:password|publickey) for root from ([^\s:]+)"), 50),
+            "SSH_ROOT_LOGIN_ATTEMPT": (re.compile(r"Accepted (?:password|publickey) for root from ([^\s:]+)"), 0),
             "SSH_TUNNEL_ATTEMPT": (re.compile(r"refused local port forward.*from ([^\s:]+)"), 40),
             "SSH_DIRECT_TCPIP": (re.compile(r"connect_to .* port \d+: failed.*from ([^\s:]+)"), 30),
-            "SSH_SFTP_REQUEST": (re.compile(r"subsystem request for sftp by user (\w+)(?: from ([^\s:]+))?"), 5),
+            "SSH_SFTP_REQUEST": (re.compile(r"subsystem request for sftp by user (\w+)(?: from ([^\s:]+))?"), 0),
             "SSH_HOST_KEY_CHANGED": (re.compile(r"WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED.*from ([^\s:]+)"), 45),
             "SSH_CIPHER_MISMATCH": (re.compile(r"no matching cipher found.*from ([^\s:]+)"), 15),
 
@@ -141,10 +141,10 @@ class LogMonitor:
             "FTP_CMD_INJECTION": (re.compile(r"FTP command injection payload from ([^\s]+)"), 60),
 
             # CATEGORY 8: PRIVILEGE ESCALATION & REVERSE SHELLS (12 RULES)
-            "SUDO_EXECUTION": (re.compile(r"(\w+) : TTY=.* ; COMMAND=(.*)"), 5),
+            "SUDO_EXECUTION": (re.compile(r"(\w+) : TTY=.* ; COMMAND=(.*)"), 0),
             "SUDO_FAILED_PASSWORD": (re.compile(r"(\w+) : (\d+) incorrect password attempts"), 20),
             "SUDO_ROOT_SHELL": (re.compile(r"(\w+) : TTY=.* ; COMMAND=.*(?:/bin/bash|/bin/sh|/bin/zsh|su root|su -)"), 65),
-            "SU_TO_ROOT_SUCCESS": (re.compile(r"successful su for root by (\w+)"), 40),
+            "SU_TO_ROOT_SUCCESS": (re.compile(r"successful su for root by (\w+)"), 0),
             "NETCAT_REVERSE_SHELL": (re.compile(r"process '(nc|ncat|netcat)' launched with '-e' by (\w+)"), 80),
             "SOCAT_TUNNEL_EXEC": (re.compile(r"socat EXEC:.*TCP:([^\s:]+)"), 75),
             "PYTHON_REVERSE_SHELL": (re.compile(r"python.*socket.*connect\(.*([^\s:]+)"), 80),
@@ -156,7 +156,7 @@ class LogMonitor:
 
             # CATEGORY 9: KERNEL & HARDWARE ANOMALIES (10 RULES)
             "KERNEL_SEGFAULT": (re.compile(r"kernel: .* segfault at .* error \d+ in"), 40),
-            "OOM_KILLER_TRIGGERED": (re.compile(r"kernel: Out of memory: Kill process (\d+) \((.*)\)"), 45),
+            "OOM_KILLER_TRIGGERED": (re.compile(r"kernel: Out of memory: Kill process (\d+) \((.*)\)"), 0),
             "NIC_LINK_DOWN": (re.compile(r"kernel: \w+: link down / carrier lost"), 30),
             "NIC_DRIVER_CRASH": (re.compile(r"kernel: \w+: driver reset failed / hardware error"), 50),
             "DMA_BUFFER_OVERFLOW": (re.compile(r"kernel: DMA buffer overflow on interface (\w+)"), 60),
@@ -167,12 +167,12 @@ class LogMonitor:
             "HARDWARE_INTERRUPT_FLOOD": (re.compile(r"kernel: do_IRQ: \d+\.\d+ No irq handler for vector"), 40),
 
             # CATEGORY 10: ACCOUNT MANAGEMENT ABUSE (10 RULES)
-            "USER_CREATED": (re.compile(r"new user: name=(\w+), UID=(\d+)"), 30),
+            "USER_CREATED": (re.compile(r"new user: name=(\w+), UID=(\d+)"), 0),
             "USER_DELETED": (re.compile(r"delete user '(\w+)'"), 35),
-            "PASSWORD_CHANGED": (re.compile(r"password changed for (\w+)"), 20),
+            "PASSWORD_CHANGED": (re.compile(r"password changed for (\w+)"), 0),
             "GROUP_SUDO_ADD": (re.compile(r"add '(\w+)' to group '(?:sudo|wheel|root)'"), 70),
             "SHADOW_FILE_MODIFIED": (re.compile(r"user management updated /etc/shadow for (\w+)"), 50),
-            "PAM_AUTH_FAILURE": (re.compile(r"pam_unix\(.*:auth\): authentication failure; logname=.* rhost=([^\s]+)"), 20),
+            "PAM_AUTH_FAILURE": (re.compile(r"pam_unix\((?!sshd)[^:]+:auth\): authentication failure; logname=.* rhost=([^\s]+)"), 20),
             "LOCKED_ACCOUNT_LOGIN": (re.compile(r"User (\w+) account is locked, login refused from ([^\s]+)"), 30),
             "GPASSWD_GROUP_CHANGE": (re.compile(r"gpasswd: user (\w+) added to group (\w+) by (\w+)"), 40),
             "EXPIRED_PASS_LOGIN": (re.compile(r"User (\w+) password has expired, login refused from ([^\s]+)"), 25),
@@ -184,42 +184,44 @@ class LogMonitor:
 
     def tail_file(self, file_path: str):
         """
-        Continuous file tailing with inode and logrotate rotation detection.
+        Continuous non-recursive file tailing with inode and logrotate rotation detection.
         """
-        try:
-            current_inode = None
-            if os.path.exists(file_path):
+        while True:
+            try:
+                if not os.path.exists(file_path):
+                    time.sleep(2)
+                    continue
+
                 current_inode = os.stat(file_path).st_ino
 
-            with open(file_path, "r", encoding="utf-8", errors="ignore") as log:
-                log.seek(0, 2)
-                print(f"[+] Live Tailing Active (Logrotate Inode Tracking Active): {file_path}")
-                
-                while True:
-                    line = log.readline()
-                    if line:
-                        self.parse_line(line, source_file=file_path)
-                    else:
-                        time.sleep(0.3)
-                        
-                        if os.path.exists(file_path):
-                            try:
-                                stat = os.stat(file_path)
-                                if current_inode is not None and stat.st_ino != current_inode:
-                                    print(f"[*] [LOGROTATE DETECTED] Inode changed for {file_path}. Reopening new file...")
-                                    break
-                                if log.tell() > stat.st_size:
-                                    print(f"[*] [LOG TRUNCATED] File truncated for {file_path}. Resetting read position...")
-                                    log.seek(0, 0)
-                            except Exception:
-                                pass
-        except PermissionError:
-            print(f"[-] Permission Denied for {file_path}. Try running with sudo.")
-        except Exception as e:
-            print(f"[-] Error tailing {file_path}: {e}")
-
-        time.sleep(1)
-        self.tail_file(file_path)
+                with open(file_path, "r", encoding="utf-8", errors="ignore") as log:
+                    log.seek(0, 2)
+                    print(f"[+] Live Tailing Active (Logrotate Inode Tracking Active): {file_path}")
+                    
+                    while True:
+                        line = log.readline()
+                        if line:
+                            self.parse_line(line, source_file=file_path)
+                        else:
+                            time.sleep(0.3)
+                            
+                            if os.path.exists(file_path):
+                                try:
+                                    stat = os.stat(file_path)
+                                    if current_inode is not None and stat.st_ino != current_inode:
+                                        print(f"[*] [LOGROTATE DETECTED] Inode changed for {file_path}. Reopening new file...")
+                                        break
+                                    if log.tell() > stat.st_size:
+                                        print(f"[*] [LOG TRUNCATED] File truncated for {file_path}. Resetting read position...")
+                                        log.seek(0, 0)
+                                except Exception:
+                                    pass
+            except PermissionError:
+                print(f"[-] Permission Denied for {file_path}. Retrying in 5s (run with sudo for full access)...")
+                time.sleep(5)
+            except Exception as e:
+                print(f"[-] Error tailing {file_path}: {e}")
+                time.sleep(2)
 
     def start(self):
         """
@@ -245,8 +247,13 @@ class LogMonitor:
             for path in active_files:
                 t = threading.Thread(target=self.tail_file, args=(path,), daemon=True)
                 t.start()
+        elif JournalReader.is_available():
+            print("[+] Syslog files not found. Activating systemd-journald live streaming as primary log source.")
+            self.journal_reader = JournalReader(callback=self.parse_line)
+            t_j = threading.Thread(target=self.journal_reader.start_streaming, daemon=True)
+            t_j.start()
 
-        if JournalReader.is_available():
+        if getattr(config, 'FORCE_JOURNALD_STREAMING', False) and JournalReader.is_available() and active_files:
             self.journal_reader = JournalReader(callback=self.parse_line)
             t_j = threading.Thread(target=self.journal_reader.start_streaming, daemon=True)
             t_j.start()
@@ -328,6 +335,9 @@ class LogMonitor:
                 elif event_type == "SUDO_EXECUTION" and len(groups) >= 2:
                     cmd = groups[1]
                     self.session_tracker.record_command(username=user, source_ip=ip, command=cmd, tty="pts/0")
+                    log_data = {"user": user, "ip": ip, "event": "SUDO_EXECUTION", "timestamp": time.ctime(log_event_time), "source_file": source_file}
+                    self.write_log_json(log_data)
+                    return
 
                 # D. Authentication Failure & Typo Handling (8 Attempts Tolerance)
                 elif event_type in ["SSH_FAILED_PASS", "SSH_INVALID_USER"]:

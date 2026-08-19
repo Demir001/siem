@@ -183,7 +183,7 @@ class DeterministicGuardrail:
                 re.compile(r"(?i)\b(?:syscall\(319|syscall\(322|exe=\"/memfd:|exe=\"/proc/self/fd/)\b")
             ],
             "OBFUSCATION_EVASION": [
-                re.compile(r"(?:[A-Za-z0-9+/]{4}){10,}={0,2}"),  # Uzun Base64 dizileri
+                re.compile(r"(?i)\b(?:base64\s+(?:-d|--decode)|echo\s+[A-Za-z0-9+/=]{16,}\s*\|\s*base64)\b"),
                 re.compile(r"\\x[0-9a-fA-F]{2}(?:\\x[0-9a-fA-F]{2}){4,}"), # Hex kaçış dizileri
                 re.compile(r"\$\{[^}]*:[^}]*\}"),                # String obfuskasyon kalıpları
                 re.compile(r"eval\(gzinflate\(base64_decode\("),
@@ -212,11 +212,11 @@ class DeterministicGuardrail:
             "SYSTEM_INTEGRITY": [
                 re.compile(r"(?i)\b(?:chmod\s+[0-7]*4[0-7]{3}|chmod\s+[0-7]*6[0-7]{3}|chmod\s+\+s|chmod\s+u\+s|chown\s+root)\b"), # SUID manipülasyonu
                 re.compile(r"(?i)\b(?:LD_PRELOAD|LD_LIBRARY_PATH)=/"), # Kütüphane ele geçirme
-                re.compile(r"(?i)\b(?:visudo|/etc/sudoers|pkexec|chpasswd|usermod\s+-aG\s+sudo|setcap\s+cap_setuid)\b"), # Sudoers / Auth
+                re.compile(r"(?i)\b(?:echo\s+.*>>\s*/etc/sudoers|chmod\s+777\s+/etc/sudoers|setcap\s+cap_setuid\+ep)\b"),
                 re.compile(r"(?i)\b(?:cat\s+/etc/shadow|dd\s+if=/dev/zero\s+of=/dev/|rm\s+-rf\s+/|chattr\s+-i\s+/etc/shadow|chmod\s+777\s+/etc/shadow)\b"),
                 re.compile(r"(?i)\b(?:find\s+/\s+-perm\s+-4000|export\s+PATH=/tmp:\$PATH|pam_exec\.so.*expose_authtok)\b"),
                 re.compile(r"(?i)user management updated /etc/shadow for unauthorized"),
-                re.compile(r"(?i)COMMAND=.*(?:vim\s+-c\s+':!/bin/sh'|find\s+\.\s+-exec\s+/bin/sh|awk\s+'BEGIN\s*\{system\(\"/bin/sh\"\)\}'|python3\s+-c\s+.*os\.execl.*sh|perl\s+-e\s+.*(?:exec|system).*sh|env\s+/bin/sh|capsh\s+--gid=0|flock\s+-u\s+/\s+/bin/sh|tar\s+-cf.*checkpoint-action=exec=/bin/sh|zip\s+.*--unzip-command=.*sh|less\s+/etc/profile|man\s+man|strace\s+-o\s+/dev/null\s+/bin/sh)")
+                re.compile(r"(?i)COMMAND=.*(?:vim\s+-c\s+':!/bin/sh'|find\s+\.\s+-exec\s+/bin/sh|awk\s+'BEGIN\s*\{system\(\"/bin/sh\"\)\}'|python3\s+-c\s+.*os\.execl.*sh|perl\s+-e\s+.*(?:exec|system).*sh|env\s+/bin/sh|capsh\s+--gid=0|flock\s+-u\s+/\s+/bin/sh|tar\s+-cf.*checkpoint-action=exec=/bin/sh|zip\s+.*--unzip-command=.*sh|strace\s+-o\s+/dev/null\s+/bin/sh)")
             ],
             "NETWORK_C2": [
                 re.compile(r"(?i)\b(?:bash\s+-i\s+>&|nc(?:\.traditional)?\s+(?:-e|-c)|ncat\s+(?:--ssl\s+)?[\d\.\:]+\s+(?:\d+\s+)?-e)\b"), # Reverse shell
@@ -231,8 +231,6 @@ class DeterministicGuardrail:
                 re.compile(r"(?i)ICMP echo payload size > 1000 bytes")
             ],
             "AUTH_ANOMALY": [
-                re.compile(r"(?i)Invalid user (?:admin|root|support|oracle|test|postgres) from"),
-                re.compile(r"(?i)Failed password for invalid user (?:admin|root|support|oracle|test|postgres) from"),
                 re.compile(r"(?i)error: maximum authentication attempts exceeded"),
                 re.compile(r"(?i)vsftpd.*FAIL LOGIN.*brute force")
             ],
@@ -301,7 +299,10 @@ class DeterministicGuardrail:
             re.compile(r"(?i)systemd-timesyncd\[\d+\]:\s+Synchronized to time server"),
             re.compile(r"(?i)auditd\[\d+\]:.*msg='op=login id=0 exe=\"/usr/sbin/sshd\" res=success'"),
             re.compile(r"\[UFW ALLOW\]"),
-            re.compile(r"(?i)rsyslogd.*(?:HUPed|origin software)")
+            re.compile(r"(?i)\b(?:man\s+\w+|less\s+[\w\./\-]+|cat\s+[\w\./\-]+\.md|git\s+log|git\s+show|git\s+checkout|git\s+status|git\s+diff|git\s+branch)\b"),
+            re.compile(r"(?i)\b(?:visudo\s+-c|sudo\s+visudo|grep\s+.*sudoers)\b"),
+            re.compile(r"(?i)\bssh-(?:rsa|ed25519|dss)\s+[A-Za-z0-9+/=]+\b"),
+            re.compile(r"(?i)^\s*(?:df\s*-[a-z0-9]+|du\s*-[a-z0-9]+|free\s*-[a-z0-9]+|uptime|top|htop|ls\b|ls\s+-[a-z0-9]+|pwd|whoami|id|uname\s*-[a-z0-9]+|hostname|date|ps\s*-[a-z0-9]+)\s*$")
         ]
 
     def check(self, log_line: str) -> dict:

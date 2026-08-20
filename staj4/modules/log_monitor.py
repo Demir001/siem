@@ -250,13 +250,10 @@ class LogMonitor:
             for path in active_files:
                 t = threading.Thread(target=self.tail_file, args=(path,), daemon=True)
                 t.start()
-        elif JournalReader.is_available():
-            print("[+] Syslog files not found. Activating systemd-journald live streaming as primary log source.")
-            self.journal_reader = JournalReader(callback=self.parse_line)
-            t_j = threading.Thread(target=self.journal_reader.start_streaming, daemon=True)
-            t_j.start()
 
-        if getattr(config, 'FORCE_JOURNALD_STREAMING', False) and JournalReader.is_available() and active_files:
+        # ALWAYS activate systemd-journald live streaming on Linux alongside log files
+        if JournalReader.is_available():
+            print("[+] Activating systemd-journald live streaming (journalctl -f) as concurrent log stream.")
             self.journal_reader = JournalReader(callback=self.parse_line)
             t_j = threading.Thread(target=self.journal_reader.start_streaming, daemon=True)
             t_j.start()

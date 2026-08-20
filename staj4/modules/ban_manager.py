@@ -274,10 +274,14 @@ class BanManager:
         except Exception:
             pass
 
-    def _apply_os_firewall_rule(self, target: str, is_internal: bool, criticality: str):
+    def _apply_os_firewall_rule(self, target: str, is_internal: bool, criticality: str = "HIGH"):
         """
-        Executes host firewall enforcement (UFW + IPTables / IP6Tables).
+        Executes kernel-level IPTables/IP6Tables drop and UFW deny rules.
         """
+        if getattr(self, 'dry_run', False) or getattr(config, 'DRY_RUN_MODE', False):
+            print(f"[*] [DRY-RUN / WARNING ONLY] OS Firewall ban rule suppressed for {target}. (Warning logged - No active drop applied).")
+            return
+
         if os.name != 'nt':
             is_ipv6 = False
             try:

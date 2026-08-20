@@ -1228,3 +1228,123 @@
   Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Admin Unban
   Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Admin Unban
 ---------------------------------------------------------------------------
+[2026-08-20 14:00:40] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Admin Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Admin Unban
+---------------------------------------------------------------------------
+[2026-08-20 14:06:55] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.199 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.199 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 14:06:55] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (1/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:18] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.199 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.199 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 14:07:18] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (1/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:19] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (2/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:19] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (3/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:19] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (4/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:20] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (5/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:20] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (6/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:20] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (7/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:21] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (8/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:21] [WARNING ] [MALICIOUS OPERATION] [AUTH_GUARD] [RAPID_BRUTE_FORCE]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: High-velocity automated brute-force attack burst detected from 192.168.42.199.
+  Details: Rapid Automated Brute-Force Burst Detected from 192.168.42.199 (9 attempts in 3s).
+---------------------------------------------------------------------------
+[2026-08-20 14:07:46] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.199 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.199 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 14:07:46] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (1/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:47] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (2/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:47] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (3/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:47] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (4/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:48] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (5/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:48] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (6/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:48] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (7/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:49] [INFO    ] [SAFE OPERATION] [AUTH_GUARD] [HUMAN_TYPO_TOLERATED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Human password typo tolerated for target 192.168.42.199. (Safe Operation - No ban applied).
+  Details: Tolerated human password typo (8/8) for user 'admin' from 192.168.42.199. No ban applied.
+---------------------------------------------------------------------------
+[2026-08-20 14:07:49] [WARNING ] [MALICIOUS OPERATION] [AUTH_GUARD] [RAPID_BRUTE_FORCE]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: High-velocity automated brute-force attack burst detected from 192.168.42.199.
+  Details: Rapid Automated Brute-Force Burst Detected from 192.168.42.199 (9 attempts in 3s).
+---------------------------------------------------------------------------
+[2026-08-20 14:07:49] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.199 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.199 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.199 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------

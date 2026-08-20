@@ -84,8 +84,8 @@ class PayloadCanonicalizer:
         res = re.sub(r'\$(?:@|\*|\{[a-zA-Z_][a-zA-Z0-9_]*:-\})', '', res)
         # Word-internal backslash unescaping (e.g. c\a\t /e\t\c/s\h\a\d\o\w -> cat /etc/shadow)
         res = re.sub(r'\\([a-zA-Z0-9_\-\./])', r'\1', res)
-        # Collapse multiple redundant slashes (//////etc//////shadow -> /etc/shadow)
-        res = re.sub(r'/{2,}', '/', res)
+        # Collapse multiple redundant slashes in file paths without damaging URL protocol schemes (http://)
+        res = re.sub(r'(?<!:)/{2,}', '/', res)
         return res
 
     @staticmethod

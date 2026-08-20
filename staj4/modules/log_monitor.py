@@ -334,7 +334,7 @@ class LogMonitor:
                 # A. Successful Authentication
                 if event_type == "SSH_SUCCESS":
                     self.ban_manager.register_auth_success(ip=ip, username=user)
-                    self.session_tracker.start_session(username=user, source_ip=ip, tty="pts/0")
+                    self.session_tracker.sync_active_os_sessions()
                     self.ip_risk_score[ip] = 0.0
                     self.failed_attempts[ip].clear()
                     if self.callback:

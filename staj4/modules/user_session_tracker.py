@@ -206,28 +206,19 @@ class UserSessionTracker:
                         actual_key = (u, s_ip, t)
                         break
                 
-                # B. If not found by TTY, query psutil.users() live from Linux utmp!
+                # B. If not found by TTY, query psutil.users() live from Linux utmp by exact TTY!
                 if actual_ip in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"]:
                     try:
                         for u in psutil.users():
                             u_term = (u.terminal or "").replace("/dev/", "")
                             u_host = u.host or ""
-                            if (u_term == clean_tty or u.name == username) and u_host and u_host not in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"]:
+                            if u_term and u_term == clean_tty and u_host and u_host not in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"]:
                                 actual_ip = u_host
                                 actual_user = u.name
                                 actual_key = (actual_user, actual_ip, tty)
                                 break
                     except Exception:
                         pass
-
-                # C. If still not found, check matching username in active_sessions
-                if actual_ip in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"]:
-                    for (u, s_ip, t), sess in self.active_sessions.items():
-                        if u == username and s_ip not in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"]:
-                            actual_ip = s_ip
-                            actual_user = u
-                            actual_key = (u, s_ip, t)
-                            break
 
             if actual_key not in self.active_sessions:
                 self.start_session(actual_user, actual_ip, tty)
@@ -272,26 +263,37 @@ class UserSessionTracker:
 
             # Immediate hostile action intercept & session kill
             if risk_score >= 70 or session["cumulative_risk"] >= 50:
-                # 1. Terminate hostile interactive terminal session and wipe screen buffer immediately
-                if os.name != 'nt':
+                is_local = (actual_ip in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"] or self.ban_manager.is_protected_ip(actual_ip))
+
+                # 1. Terminate hostile interactive terminal session (NEVER terminate local root console or when in dry-run mode)
+                clean_tty = tty.replace("/dev/", "")
+                if getattr(self, 'dry_run', False) or getattr(config, 'DRY_RUN_MODE', False):
+                    print(f"[*] [DRY-RUN / WARNING ONLY] Session kill suppressed for user '{actual_user}' on {clean_tty}. (Warning logged - No pkill applied).")
+                elif not is_local and os.name != 'nt':
                     try:
-                        clean_tty = tty.replace("/dev/", "")
-                        # Instantly wipe screen and scrollback buffer to prevent attacker viewing leaked output
+                        current_siem_tty = ""
                         try:
-                            with open(f"/dev/{clean_tty}", "w") as tty_out:
-                                tty_out.write("\033[2J\033[H\033[3J\r\n\r\n[!] ACCESS DENIED: SECURITY VIOLATION INTERCEPTED. TERMINAL KILLED.\r\n\r\n")
-                                tty_out.flush()
+                            current_siem_tty = (psutil.Process().terminal() or "").replace("/dev/", "")
                         except Exception:
                             pass
 
-                        is_root = (hasattr(os, 'geteuid') and os.geteuid() == 0)
-                        kill_cmd = f"pkill -9 -t {clean_tty}" if is_root else f"sudo -n pkill -9 -t {clean_tty}"
-                        subprocess.run(kill_cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=2)
+                        if clean_tty and clean_tty != current_siem_tty:
+                            # Instantly wipe screen and scrollback buffer
+                            try:
+                                with open(f"/dev/{clean_tty}", "w") as tty_out:
+                                    tty_out.write("\033[2J\033[H\033[3J\r\n\r\n[!] ACCESS DENIED: SECURITY VIOLATION INTERCEPTED. TERMINAL KILLED.\r\n\r\n")
+                                    tty_out.flush()
+                            except Exception:
+                                pass
+
+                            is_root = (hasattr(os, 'geteuid') and os.geteuid() == 0)
+                            kill_cmd = f"pkill -9 -t {clean_tty}" if is_root else f"sudo -n pkill -9 -t {clean_tty}"
+                            subprocess.run(kill_cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=2)
                     except Exception:
                         pass
 
-                # 2. Ban IP on firewall if not protected
-                if not self.ban_manager.is_banned(actual_ip) and not self.ban_manager.is_protected_ip(actual_ip):
+                # 2. Ban IP on firewall if remote and not protected
+                if not is_local and not self.ban_manager.is_banned(actual_ip):
                     ban_reason = f"Session Hostile Activity: '{command}' ({criticality} Level - Risk: {session['cumulative_risk']})"
                     self.ban_manager.ban_ip(ip=actual_ip, criticality=criticality, reason=ban_reason)
                 
@@ -311,6 +313,7 @@ class UserSessionTracker:
             "landscape-sysinfo", "update-notifier", "update-motd", "motd-news", "apt-check", "systemd",
             "gpg-agent", "ssh-agent", "dbus", "snapd", "cloud-init", "locale", "dircolors", "mesg",
             "ubuntu-advantage", "apt-esm-hook", "fwupd", "hwe-eol", "esm-cache", "lesspipe",
+            "motd.ubuntu.com", "ubuntu.com", "canonical",
             "/etc/update-motd", "/usr/lib/ubuntu-advantage", "/usr/lib/update-notifier", "/usr/libexec"
         ]):
             return "ROUTINE_COMMAND", 0, False, "Standard System Utility / Maintenance", {}, "LOW"
@@ -398,6 +401,7 @@ class UserSessionTracker:
                         "landscape-sysinfo", "update-notifier", "update-motd", "motd-news",
                         "apt-check", "gpg-agent", "ssh-agent", "dbus", "snapd", "cloud-init", "locale", "dircolors",
                         "ubuntu-advantage", "apt-esm-hook", "fwupd", "hwe-eol", "esm-cache", "lesspipe",
+                        "motd.ubuntu.com", "ubuntu.com", "canonical",
                         "/etc/update-motd", "/usr/lib/ubuntu-advantage", "/usr/lib/update-notifier", "/usr/libexec"
                     ]):
                         continue
@@ -535,6 +539,10 @@ class UserSessionTracker:
             source_ip = session["source_ip"]
             tty = session["tty"]
             idle_minutes = int(idle_time // 60)
+
+            # Never kick local console sessions (LOCAL_SYSTEM / localhost) or protected IPs
+            if source_ip in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"] or self.ban_manager.is_protected_ip(source_ip):
+                continue
 
             print(f"\n[!] [KICKED DUE TO INACTIVITY] User: {username} | Terminal: {tty} | Idle Duration: {idle_minutes} Minutes")
 

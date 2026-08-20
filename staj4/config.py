@@ -5,6 +5,9 @@ SYSTEM AND SECURITY CONFIGURATION (config.py)
 ==============================================================================
 """
 
+# 0. Operational Mode (Dry-Run / Warning-Only vs. Active Blocking)
+DRY_RUN_MODE = False                     # Set True to evaluate threats and generate alerts without banning or kicking
+
 # 1. System Resource Thresholds
 CPU_USAGE_THRESHOLD = 85.0              # Overall CPU usage alert threshold (%)
 CPU_USAGE_BY_CORE_THRESHOLD = 95.0      # Per-core CPU overload threshold (%)

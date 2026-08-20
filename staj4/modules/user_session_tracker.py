@@ -58,10 +58,7 @@ class UserSessionTracker:
                 is_root = (hasattr(os, 'geteuid') and os.geteuid() == 0)
                 if is_root:
                     hook_content = (
-                        '# SIEM Real-Time Pre-Execution and Interactive Shell Command Audit Hook\n'
-                        'if [ -n "$BASH_VERSION" ]; then\n'
-                        '    trap \'logger -p auth.notice -t siem_audit "user=$USER tty=$(tty 2>/dev/null | sed "s#/dev/##") cmd=\\"$BASH_COMMAND\\"" 2>/dev/null\' DEBUG\n'
-                        'fi\n'
+                        '# SIEM Real-Time Interactive Shell Command Audit Hook\n'
                         'export PROMPT_COMMAND=\'logger -p auth.notice -t siem_audit "user=$USER tty=$(tty 2>/dev/null | sed "s#/dev/##") cmd=\\"$(history 1 | sed "s/^[ ]*[0-9]*[ ]*//")\\""\' 2>/dev/null\n'
                     )
                     # 1. Write to /etc/profile.d/siem_audit.sh

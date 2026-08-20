@@ -1213,3 +1213,8 @@
   Summary: AI [ATTACK] (72.5% Confidence) | Web Application Attack (SQLi/XSS/XXE/LFI) (MITRE T1190 - APPLICATION_EXPLOIT) detected from LOCAL_SYSTEM.
   Details: Session [SESS_legen_LOCAL_SYSTEM_pts_0_1787216741539]: User 'legen' executed 'C:\Program Files\WindowsApps\Microsoft.GamingApp_2608.1001.17.0_x64__8wekyb3d8bbwe\XboxPcAppFT.exe -Embedding'. (Summary: AI ATTACK: Web Application Attack (SQLi/XSS/XXE/LFI))
 ---------------------------------------------------------------------------
+[2026-08-20 12:17:46] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Admin Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Admin Unban
+---------------------------------------------------------------------------

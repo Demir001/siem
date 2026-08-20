@@ -37,3 +37,5 @@
 {"user": "admin", "ip": "LOCAL_SYSTEM", "event": "SU_TO_ROOT_SUCCESS", "timestamp": "Wed Aug 19 13:55:01 2026", "source_file": "syslog", "ai_analysis": {"is_attack": false, "verdict": "BENIGN"}}
 {"user": "intern", "ip": "LOCAL_SYSTEM", "event": "USER_CREATED", "timestamp": "Wed Aug 19 13:55:02 2026", "source_file": "syslog", "ai_analysis": {"is_attack": false, "verdict": "BENIGN"}}
 {"user": "UNKNOWN", "ip": "198.51.100.99", "event": "SSH_PREAUTH_SCAN", "timestamp": "Wed Aug 19 14:00:00 2026", "source_file": "syslog", "ai_analysis": {"is_attack": false, "verdict": "SAFE", "confidence": 50.0, "layer": "Fallback"}}
+{"user": "admin", "ip": "LOCAL_SYSTEM", "event": "SHELL_COMMAND_AUDIT", "timestamp": "Thu Aug 20 10:40:00 2026", "source_file": "/var/log/syslog"}
+{"user": "admin", "ip": "LOCAL_SYSTEM", "event": "SUDO_EXECUTION", "timestamp": "Thu Aug 20 10:41:00 2026", "source_file": "/var/log/auth.log"}

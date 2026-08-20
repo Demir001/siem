@@ -46,6 +46,31 @@ class UserSessionTracker:
         
         self.init_db()
         self.cleanup_stale_sessions_on_boot()
+        self._install_linux_shell_audit_hook()
+
+    def _install_linux_shell_audit_hook(self):
+        """
+        Installs system-wide non-sudo and sudo interactive shell audit hook in /etc/profile.d.
+        Ensures non-sudo commands (e.g. non-root 'cat /etc/shadow') are logged to syslog immediately.
+        """
+        if os.name != 'nt':
+            try:
+                is_root = (hasattr(os, 'geteuid') and os.geteuid() == 0)
+                if is_root:
+                    hook_path = "/etc/profile.d/siem_audit.sh"
+                    hook_content = (
+                        '# SIEM Real-Time Pre-Execution and Interactive Shell Command Audit Hook\n'
+                        'if [ -n "$BASH_VERSION" ]; then\n'
+                        '    trap \'logger -p auth.notice -t siem_audit "user=$USER tty=$(tty 2>/dev/null | sed "s#/dev/##") cmd=\\"$BASH_COMMAND\\"" 2>/dev/null\' DEBUG\n'
+                        'fi\n'
+                        'export PROMPT_COMMAND=\'logger -p auth.notice -t siem_audit "user=$USER tty=$(tty 2>/dev/null | sed "s#/dev/##") cmd=\\"$(history 1 | sed "s/^[ ]*[0-9]*[ ]*//")\\""\' 2>/dev/null\n'
+                    )
+                    if not os.path.exists(hook_path):
+                        with open(hook_path, "w", encoding="utf-8") as f:
+                            f.write(hook_content)
+                        os.chmod(hook_path, 0o644)
+            except Exception:
+                pass
 
     def init_db(self):
         """
@@ -211,10 +236,18 @@ class UserSessionTracker:
 
             # Immediate hostile action intercept & session kill
             if risk_score >= 70 or session["cumulative_risk"] >= 50:
-                # 1. Terminate hostile interactive terminal session immediately
+                # 1. Terminate hostile interactive terminal session and wipe screen buffer immediately
                 if os.name != 'nt':
                     try:
                         clean_tty = tty.replace("/dev/", "")
+                        # Instantly wipe screen and scrollback buffer to prevent attacker viewing leaked output
+                        try:
+                            with open(f"/dev/{clean_tty}", "w") as tty_out:
+                                tty_out.write("\033[2J\033[H\033[3J\r\n\r\n[!] ACCESS DENIED: SECURITY VIOLATION INTERCEPTED. TERMINAL KILLED.\r\n\r\n")
+                                tty_out.flush()
+                        except Exception:
+                            pass
+
                         is_root = (hasattr(os, 'geteuid') and os.geteuid() == 0)
                         kill_cmd = f"pkill -9 -t {clean_tty}" if is_root else f"sudo -n pkill -9 -t {clean_tty}"
                         subprocess.run(kill_cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=2)
@@ -232,7 +265,8 @@ class UserSessionTracker:
         """
         Contextually inspects commands across Regex rules, AI Engine, and MITRE ATT&CK vectors.
         """
-        cmd = command.strip()
+        from modules.canonicalizer import PayloadCanonicalizer
+        cmd = PayloadCanonicalizer.canonicalize(command).strip()
         cmd_lower = cmd.lower()
         
         # 1. SIEM internal operations & maintenance commands (Bypasses AI to eliminate recursive loops)

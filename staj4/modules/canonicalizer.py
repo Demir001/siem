@@ -80,6 +80,12 @@ class PayloadCanonicalizer:
         res = re.sub(r"(?<=/)['\"](?=\w)", "", res)
         res = re.sub(r"(?<=\w)['\"](?=/)", "", res)
         res = res.replace('${PATH:0:1}', '/')
+        # Shell variable obfuscation stripping ($@, $*, ${u:-})
+        res = re.sub(r'\$(?:@|\*|\{[a-zA-Z_][a-zA-Z0-9_]*:-\})', '', res)
+        # Word-internal backslash unescaping (e.g. c\a\t /e\t\c/s\h\a\d\o\w -> cat /etc/shadow)
+        res = re.sub(r'\\([a-zA-Z0-9_\-\./])', r'\1', res)
+        # Collapse multiple redundant slashes (//////etc//////shadow -> /etc/shadow)
+        res = re.sub(r'/{2,}', '/', res)
         return res
 
     @staticmethod

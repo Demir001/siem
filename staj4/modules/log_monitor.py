@@ -141,7 +141,8 @@ class LogMonitor:
             "FTP_CMD_INJECTION": (re.compile(r"FTP command injection payload from ([^\s]+)"), 60),
 
             # CATEGORY 8: PRIVILEGE ESCALATION & REVERSE SHELLS (12 RULES)
-            "SUDO_EXECUTION": (re.compile(r"(\w+) : TTY=.* ; COMMAND=(.*)"), 0),
+            "SUDO_EXECUTION": (re.compile(r"(\w+) : TTY=(\S+)\s*;.*COMMAND=(.*)"), 0),
+            "SHELL_COMMAND_AUDIT": (re.compile(r"siem_audit.*user=(\w+)\s+tty=(\S+)\s+cmd=\"([^\"]+)\""), 0),
             "SUDO_FAILED_PASSWORD": (re.compile(r"(\w+) : (\d+) incorrect password attempts"), 20),
             "SUDO_ROOT_SHELL": (re.compile(r"(\w+) : TTY=.* ; COMMAND=.*(?:/bin/bash|/bin/sh|/bin/zsh|su root|su -)"), 65),
             "SU_TO_ROOT_SUCCESS": (re.compile(r"successful su for root by (\w+)"), 0),
@@ -333,11 +334,21 @@ class LogMonitor:
                 elif event_type == "SSH_LOGOUT":
                     self.session_tracker.end_session(username=user, source_ip=ip, tty="pts/0")
 
-                # C. Command Execution
-                elif event_type == "SUDO_EXECUTION" and len(groups) >= 2:
-                    cmd = groups[1]
-                    self.session_tracker.record_command(username=user, source_ip=ip, command=cmd, tty="pts/0")
+                # C. Command Execution (Sudo & Interactive Shell Prompt Audit)
+                elif event_type == "SUDO_EXECUTION":
+                    target_tty = groups[1] if len(groups) >= 3 else "pts/0"
+                    cmd = groups[2] if len(groups) >= 3 else groups[1]
+                    self.session_tracker.record_command(username=user, source_ip=ip, command=cmd, tty=target_tty)
                     log_data = {"user": user, "ip": ip, "event": "SUDO_EXECUTION", "timestamp": time.ctime(log_event_time), "source_file": source_file}
+                    self.write_log_json(log_data)
+                    return
+
+                elif event_type == "SHELL_COMMAND_AUDIT" and len(groups) >= 3:
+                    target_user = groups[0]
+                    target_tty = groups[1]
+                    cmd = groups[2]
+                    self.session_tracker.record_command(username=target_user, source_ip=ip, command=cmd, tty=target_tty)
+                    log_data = {"user": target_user, "ip": ip, "event": "SHELL_COMMAND_AUDIT", "timestamp": time.ctime(log_event_time), "source_file": source_file}
                     self.write_log_json(log_data)
                     return
 

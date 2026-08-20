@@ -118,3 +118,48 @@
   Summary: Network: [INTERNAL] | Target: 198.51.100.99 restriction lifted! Reason: Manual Unban
   Details: Network: [INTERNAL] | Target: 198.51.100.99 restriction lifted! Reason: Manual Unban
 ---------------------------------------------------------------------------
+[2026-08-20 10:43:40] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.195 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.195 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.195 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 10:43:40] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.195 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'admin' logged in successfully. (IP: 192.168.1.195 | Terminal: pts/2)
+  Details: User 'admin' logged in successfully. (IP: 192.168.1.195 | Terminal: pts/2)
+---------------------------------------------------------------------------
+[2026-08-20 10:43:40] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_SENSITIVE_FILE_READ]
+  Target: 192.168.1.195 | MITRE: T1068 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (100.0% Confidence) | Privilege Escalation / Integrity Violation (MITRE T1068 - SYSTEM_INTEGRITY) detected from 192.168.1.195.
+  Details: Session [SESS_admin_192.168.1.195_pts_2_1787211820244]: User 'admin' executed 'cat /etc/shadow'. (Summary: Unauthorized Sensitive Credential File Read (/etc/shadow))
+---------------------------------------------------------------------------
+[2026-08-20 10:43:40] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.1.195 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.1.195 SSH isolated due to security violations.
+  Details: Target 192.168.1.195 (INTERNAL) restricted for 15 mins. Reason: Session Hostile Activity: 'cat /etc/shadow' (CRITICAL Level - Risk: 75)
+---------------------------------------------------------------------------
+[2026-08-20 10:43:40] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.195 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.195 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.195 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------
+[2026-08-20 10:43:40] [NOTICE  ] [SAFE OPERATION] [SESSION_TRACKER] [USER_LOGIN]
+  Target: 192.168.1.195 | MITRE: N/A | AI Verdict: N/A
+  Summary: User 'admin' logged in successfully. (IP: 192.168.1.195 | Terminal: pts/2)
+  Details: User 'admin' logged in successfully. (IP: 192.168.1.195 | Terminal: pts/2)
+---------------------------------------------------------------------------
+[2026-08-20 10:43:40] [CRITICAL] [MALICIOUS ATTACK] [USER_ACTIVITY] [COMMAND_SENSITIVE_FILE_READ]
+  Target: 192.168.1.195 | MITRE: T1068 | AI Verdict: ATTACK
+  Summary: AI [ATTACK] (100.0% Confidence) | Privilege Escalation / Integrity Violation (MITRE T1068 - SYSTEM_INTEGRITY) detected from 192.168.1.195.
+  Details: Session [SESS_admin_192.168.1.195_pts_2_1787211820347]: User 'admin' executed '/bin/cat /etc/shadow'. (Summary: Unauthorized Sensitive Credential File Read (/etc/shadow))
+---------------------------------------------------------------------------
+[2026-08-20 10:43:40] [CRITICAL] [MALICIOUS OPERATION] [BAN_MANAGER] [INTERNAL_IP_BAN]
+  Target: 192.168.1.195 | MITRE: N/A | AI Verdict: N/A
+  Summary: INTERNAL LAN IP 192.168.1.195 SSH isolated due to security violations.
+  Details: Target 192.168.1.195 (INTERNAL) restricted for 30 mins. Reason: Session Hostile Activity: '/bin/cat /etc/shadow' (CRITICAL Level - Risk: 75)
+---------------------------------------------------------------------------
+[2026-08-20 10:43:40] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.1.195 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.1.195 restriction lifted! Reason: Manual Unban
+  Details: Network: [INTERNAL] | Target: 192.168.1.195 restriction lifted! Reason: Manual Unban
+---------------------------------------------------------------------------

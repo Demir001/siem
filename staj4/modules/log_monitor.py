@@ -387,8 +387,18 @@ class LogMonitor:
         if ip != "LOCAL_SYSTEM" and self.ban_manager.is_banned(ip):
             return
 
-        # 7. Multi-Layer AI Security Analysis (Skipped for protected IPs and LOCAL_SYSTEM to prevent loops)
-        if ip != "LOCAL_SYSTEM" and not self.ban_manager.is_protected_ip(ip):
+        # Resolve client IP from active sessions if ip is LOCAL_SYSTEM
+        effective_ip = ip
+        if effective_ip in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"]:
+            for (u, s_ip, t), sess in self.session_tracker.active_sessions.items():
+                if s_ip not in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"]:
+                    effective_ip = s_ip
+                    if user == "UNKNOWN":
+                        user = u
+                    break
+
+        # 7. Multi-Layer AI Security Analysis
+        if effective_ip != "LOCAL_SYSTEM" and not self.ban_manager.is_protected_ip(effective_ip):
             ai_res = self.ai_engine.analyze(canonical_line)
             
             if ai_res.get("is_attack"):
@@ -405,12 +415,12 @@ class LogMonitor:
                     criticality = "HIGH"
                 
                 event_name = "AI_ZERO_DAY_ANOMALY" if ai_verdict == "ZERO_DAY" else "AI_ATTACK_DETECTED"
-                self.threat_event(ip=ip, user=user, score=ai_score, event=event_name, ai_info=ai_res, criticality=criticality, event_time=log_event_time)
+                self.threat_event(ip=effective_ip, user=user, score=ai_score, event=event_name, ai_info=ai_res, criticality=criticality, event_time=log_event_time)
             elif matched_rule and base_score > 0:
                 crit = "CRITICAL" if base_score >= 60 else ("HIGH" if base_score >= 35 else "MEDIUM")
-                self.threat_event(ip=ip, user=user, score=base_score, event=matched_rule, ai_info=ai_res, criticality=crit, event_time=log_event_time)
+                self.threat_event(ip=effective_ip, user=user, score=base_score, event=matched_rule, ai_info=ai_res, criticality=crit, event_time=log_event_time)
 
-        log_data = {"user": user, "ip": ip, "event": matched_rule or ai_res.get("verdict"), "timestamp": time.ctime(log_event_time), "source_file": source_file, "ai_analysis": ai_res}
+        log_data = {"user": user, "ip": effective_ip, "event": matched_rule or ai_res.get("verdict"), "timestamp": time.ctime(log_event_time), "source_file": source_file, "ai_analysis": ai_res}
         self.write_log_json(log_data)
 
     def write_log_json(self, log_dict):

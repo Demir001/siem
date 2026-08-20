@@ -50,14 +50,13 @@ class UserSessionTracker:
 
     def _install_linux_shell_audit_hook(self):
         """
-        Installs system-wide non-sudo and sudo interactive shell audit hook in /etc/profile.d.
-        Ensures non-sudo commands (e.g. non-root 'cat /etc/shadow') are logged to syslog immediately.
+        Installs system-wide non-sudo and sudo interactive shell audit hook in /etc/profile.d and /etc/bash.bashrc.
+        Ensures non-sudo commands (e.g. non-root 'cat /etc/shadow') are logged to journald/syslog immediately.
         """
         if os.name != 'nt':
             try:
                 is_root = (hasattr(os, 'geteuid') and os.geteuid() == 0)
                 if is_root:
-                    hook_path = "/etc/profile.d/siem_audit.sh"
                     hook_content = (
                         '# SIEM Real-Time Pre-Execution and Interactive Shell Command Audit Hook\n'
                         'if [ -n "$BASH_VERSION" ]; then\n'
@@ -65,10 +64,24 @@ class UserSessionTracker:
                         'fi\n'
                         'export PROMPT_COMMAND=\'logger -p auth.notice -t siem_audit "user=$USER tty=$(tty 2>/dev/null | sed "s#/dev/##") cmd=\\"$(history 1 | sed "s/^[ ]*[0-9]*[ ]*//")\\""\' 2>/dev/null\n'
                     )
-                    if not os.path.exists(hook_path):
-                        with open(hook_path, "w", encoding="utf-8") as f:
-                            f.write(hook_content)
-                        os.chmod(hook_path, 0o644)
+                    # 1. Write to /etc/profile.d/siem_audit.sh
+                    hook_path = "/etc/profile.d/siem_audit.sh"
+                    with open(hook_path, "w", encoding="utf-8") as f:
+                        f.write(hook_content)
+                    os.chmod(hook_path, 0o644)
+
+                    # 2. Append to /etc/bash.bashrc so interactive subshells always load it
+                    bashrc_path = "/etc/bash.bashrc"
+                    if os.path.exists(bashrc_path):
+                        with open(bashrc_path, "r", encoding="utf-8", errors="ignore") as f:
+                            current_rc = f.read()
+                        if "siem_audit" not in current_rc:
+                            with open(bashrc_path, "a", encoding="utf-8") as f:
+                                f.write("\n" + hook_content + "\n")
+
+                    # 3. Kernel Auditd watches on sensitive files if auditctl exists
+                    subprocess.run("auditctl -w /etc/shadow -p r -k siem_shadow 2>/dev/null", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                    subprocess.run("auditctl -w /etc/sudoers -p r -k siem_sudoers 2>/dev/null", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             except Exception:
                 pass
 
@@ -359,28 +372,46 @@ class UserSessionTracker:
         self.sync_active_os_sessions()
 
         try:
-            for proc in psutil.process_iter(['pid', 'name', 'cmdline', 'terminal', 'username']):
+            for proc in psutil.process_iter(['pid', 'name', 'cmdline', 'username']):
                 try:
-                    pid = proc.info['pid']
-                    if pid in self.seen_process_pids:
+                    pid = proc.info.get('pid')
+                    if not pid or pid in self.seen_process_pids:
                         continue
 
-                    tty = proc.info.get('terminal')
-                    if not tty:
-                        continue
-
-                    clean_tty = tty.replace("/dev/", "")
                     cmdline_list = proc.info.get('cmdline')
                     if not cmdline_list:
                         continue
 
-                    p_name = proc.info.get('name', '').lower()
-                    if p_name in ["sshd", "systemd", "login", "init", "ps", "sleep", "journalctl"]:
+                    p_name = (proc.info.get('name') or '').lower()
+                    if p_name in ["sshd", "systemd", "login", "init", "ps", "sleep", "journalctl", "main.py"]:
                         continue
 
                     cmdline_str = " ".join(cmdline_list).strip()
                     if not cmdline_str or cmdline_str in ["bash", "sh", "zsh", "-bash", "-sh", "-zsh"]:
                         continue
+
+                    # Extract TTY device dynamically or inherit from parent process tree
+                    tty = None
+                    try:
+                        if hasattr(proc, 'terminal'):
+                            tty = proc.terminal()
+                    except Exception:
+                        pass
+
+                    if not tty:
+                        try:
+                            parent_proc = proc.parent()
+                            for _ in range(4):
+                                if not parent_proc:
+                                    break
+                                if hasattr(parent_proc, 'terminal') and parent_proc.terminal():
+                                    tty = parent_proc.terminal()
+                                    break
+                                parent_proc = parent_proc.parent()
+                        except Exception:
+                            pass
+
+                    clean_tty = (tty or "pts/0").replace("/dev/", "")
 
                     # 1. Match against known active sessions on this TTY
                     matched_session = None

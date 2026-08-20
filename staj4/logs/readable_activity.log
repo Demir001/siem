@@ -1223,3 +1223,8 @@
   Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Admin Unban
   Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Admin Unban
 ---------------------------------------------------------------------------
+[2026-08-20 13:33:04] [INFO    ] [SAFE OPERATION] [BAN_MANAGER] [BAN_REMOVED]
+  Target: 192.168.42.190 | MITRE: N/A | AI Verdict: N/A
+  Summary: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Admin Unban
+  Details: Network: [INTERNAL] | Target: 192.168.42.190 restriction lifted! Reason: Manual Admin Unban
+---------------------------------------------------------------------------

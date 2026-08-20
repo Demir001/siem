@@ -309,7 +309,9 @@ class UserSessionTracker:
         if any(w in cmd_lower for w in [
             "ufw ", "iptables ", "ip6tables ", "pkill ", "ss -k", "conntrack -d", "main.py", "manage.py",
             "landscape-sysinfo", "update-notifier", "update-motd", "motd-news", "apt-check", "systemd",
-            "gpg-agent", "ssh-agent", "dbus", "snapd", "cloud-init", "locale", "dircolors", "mesg"
+            "gpg-agent", "ssh-agent", "dbus", "snapd", "cloud-init", "locale", "dircolors", "mesg",
+            "ubuntu-advantage", "apt-esm-hook", "fwupd", "hwe-eol", "esm-cache", "lesspipe",
+            "/etc/update-motd", "/usr/lib/ubuntu-advantage", "/usr/lib/update-notifier", "/usr/libexec"
         ]):
             return "ROUTINE_COMMAND", 0, False, "Standard System Utility / Maintenance", {}, "LOW"
 
@@ -394,7 +396,9 @@ class UserSessionTracker:
                     cmdline_lower = cmdline_str.lower()
                     if any(util in cmdline_lower for util in [
                         "landscape-sysinfo", "update-notifier", "update-motd", "motd-news",
-                        "apt-check", "gpg-agent", "ssh-agent", "dbus", "snapd", "cloud-init", "locale", "dircolors"
+                        "apt-check", "gpg-agent", "ssh-agent", "dbus", "snapd", "cloud-init", "locale", "dircolors",
+                        "ubuntu-advantage", "apt-esm-hook", "fwupd", "hwe-eol", "esm-cache", "lesspipe",
+                        "/etc/update-motd", "/usr/lib/ubuntu-advantage", "/usr/lib/update-notifier", "/usr/libexec"
                     ]):
                         continue
 

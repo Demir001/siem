@@ -305,9 +305,13 @@ class UserSessionTracker:
         cmd = PayloadCanonicalizer.canonicalize(command).strip()
         cmd_lower = cmd.lower()
         
-        # 1. SIEM internal operations & maintenance commands (Bypasses AI to eliminate recursive loops)
-        if any(w in cmd_lower for w in ["ufw ", "iptables ", "ip6tables ", "pkill ", "ss -k", "conntrack -d", "main.py", "manage.py"]):
-            return "ROUTINE_COMMAND", 0, False, "System Administration / SIEM Maintenance", {}, "LOW"
+        # 1. SIEM internal operations & standard OS system utilities (Bypasses AI to eliminate false positives)
+        if any(w in cmd_lower for w in [
+            "ufw ", "iptables ", "ip6tables ", "pkill ", "ss -k", "conntrack -d", "main.py", "manage.py",
+            "landscape-sysinfo", "update-notifier", "update-motd", "motd-news", "apt-check", "systemd",
+            "gpg-agent", "ssh-agent", "dbus", "snapd", "cloud-init", "locale", "dircolors", "mesg"
+        ]):
+            return "ROUTINE_COMMAND", 0, False, "Standard System Utility / Maintenance", {}, "LOW"
 
         ai_res = self.ai_engine.analyze(cmd)
         
@@ -385,6 +389,13 @@ class UserSessionTracker:
 
                     cmdline_str = " ".join(cmdline_list).strip()
                     if not cmdline_str:
+                        continue
+
+                    cmdline_lower = cmdline_str.lower()
+                    if any(util in cmdline_lower for util in [
+                        "landscape-sysinfo", "update-notifier", "update-motd", "motd-news",
+                        "apt-check", "gpg-agent", "ssh-agent", "dbus", "snapd", "cloud-init", "locale", "dircolors"
+                    ]):
                         continue
 
                     # Filter out interactive user login shells (unless running inline scripts via -c / -e)

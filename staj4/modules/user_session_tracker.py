@@ -186,12 +186,38 @@ class UserSessionTracker:
             actual_key = (username, source_ip, tty)
 
             if source_ip in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"]:
+                clean_tty = tty.replace("/dev/", "")
+                # A. First check matching TTY in active_sessions
                 for (u, s_ip, t), sess in self.active_sessions.items():
-                    if t == tty and s_ip not in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"]:
+                    clean_t = t.replace("/dev/", "")
+                    if (clean_t == clean_tty or clean_tty in clean_t or clean_t in clean_tty) and s_ip not in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"]:
                         actual_ip = s_ip
                         actual_user = u
                         actual_key = (u, s_ip, t)
                         break
+                
+                # B. If not found by TTY, query psutil.users() live from Linux utmp!
+                if actual_ip in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"]:
+                    try:
+                        for u in psutil.users():
+                            u_term = (u.terminal or "").replace("/dev/", "")
+                            u_host = u.host or ""
+                            if (u_term == clean_tty or u.name == username) and u_host and u_host not in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"]:
+                                actual_ip = u_host
+                                actual_user = u.name
+                                actual_key = (actual_user, actual_ip, tty)
+                                break
+                    except Exception:
+                        pass
+
+                # C. If still not found, check matching username in active_sessions
+                if actual_ip in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"]:
+                    for (u, s_ip, t), sess in self.active_sessions.items():
+                        if u == username and s_ip not in ["LOCAL_SYSTEM", "127.0.0.1", "localhost", "::1"]:
+                            actual_ip = s_ip
+                            actual_user = u
+                            actual_key = (u, s_ip, t)
+                            break
 
             if actual_key not in self.active_sessions:
                 self.start_session(actual_user, actual_ip, tty)
@@ -293,7 +319,7 @@ class UserSessionTracker:
             return "REVERSE_SHELL_ATTEMPT", 85, True, "Outbound Reverse Shell Connection Attempt", ai_res, "CRITICAL"
 
         if ("python" in cmd_lower or "perl" in cmd_lower or "php" in cmd_lower) and "-c " in cmd_lower and any(k in cmd_lower for k in ["socket", "pty", "subprocess", "exec", "b64decode", "zlib"]):
-            return "INLINE_INTERPRETER_EXEC", 60, True, "Inline Command-Line Code String Injection Execution", ai_res, "HIGH"
+            return "INLINE_INTERPRETER_EXEC", 75, True, "Inline Command-Line Code String Injection Execution", ai_res, "CRITICAL"
 
         # 3. AI Security Engine Anomaly / Attack Classification
         if ai_res.get("is_attack"):

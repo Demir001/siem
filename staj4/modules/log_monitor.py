@@ -142,7 +142,7 @@ class LogMonitor:
 
             # CATEGORY 8: PRIVILEGE ESCALATION & REVERSE SHELLS (12 RULES)
             "SUDO_EXECUTION": (re.compile(r"(\w+) : TTY=(\S+)\s*;.*COMMAND=(.*)"), 0),
-            "SHELL_COMMAND_AUDIT": (re.compile(r"siem_audit.*user=(\w+)\s+tty=(\S+)\s+cmd=\"([^\"]+)\""), 0),
+            "SHELL_COMMAND_AUDIT": (re.compile(r"siem_audit.*user=(\w+)\s+tty=(\S+)\s+cmd=(.*)"), 0),
             "SUDO_FAILED_PASSWORD": (re.compile(r"(\w+) : (\d+) incorrect password attempts"), 20),
             "SUDO_ROOT_SHELL": (re.compile(r"(\w+) : TTY=.* ; COMMAND=.*(?:/bin/bash|/bin/sh|/bin/zsh|su root|su -)"), 65),
             "SU_TO_ROOT_SUCCESS": (re.compile(r"successful su for root by (\w+)"), 0),
@@ -297,6 +297,19 @@ class LogMonitor:
         base_score = 0
         ai_res = {"is_attack": False, "verdict": "BENIGN"}
 
+        # 5.5 Fast-Path: Interactive Shell Command Audit (siem_audit)
+        if "siem_audit" in canonical_line or "siem_audit" in cleaned_line:
+            audit_match = self.patterns["SHELL_COMMAND_AUDIT"][0].search(canonical_line) or self.patterns["SHELL_COMMAND_AUDIT"][0].search(cleaned_line)
+            if audit_match:
+                groups = audit_match.groups()
+                target_user = groups[0]
+                target_tty = groups[1]
+                cmd = groups[2].strip('\"\' ')
+                self.session_tracker.record_command(username=target_user, source_ip="LOCAL_SYSTEM", command=cmd, tty=target_tty)
+                log_data = {"user": target_user, "ip": "LOCAL_SYSTEM", "event": "SHELL_COMMAND_AUDIT", "timestamp": time.ctime(log_event_time), "source_file": source_file}
+                self.write_log_json(log_data)
+                return
+
         # 6. 106 Regex Rules Matching
         for event_type, (pattern, score) in self.patterns.items():
             match = pattern.search(canonical_line) or pattern.search(cleaned_line)
@@ -338,7 +351,7 @@ class LogMonitor:
                 elif event_type == "SUDO_EXECUTION":
                     target_tty = groups[1] if len(groups) >= 3 else "pts/0"
                     cmd = groups[2] if len(groups) >= 3 else groups[1]
-                    self.session_tracker.record_command(username=user, source_ip=ip, command=cmd, tty=target_tty)
+                    self.session_tracker.record_command(username=user, source_ip="LOCAL_SYSTEM", command=cmd, tty=target_tty)
                     log_data = {"user": user, "ip": ip, "event": "SUDO_EXECUTION", "timestamp": time.ctime(log_event_time), "source_file": source_file}
                     self.write_log_json(log_data)
                     return
@@ -346,8 +359,8 @@ class LogMonitor:
                 elif event_type == "SHELL_COMMAND_AUDIT" and len(groups) >= 3:
                     target_user = groups[0]
                     target_tty = groups[1]
-                    cmd = groups[2]
-                    self.session_tracker.record_command(username=target_user, source_ip=ip, command=cmd, tty=target_tty)
+                    cmd = groups[2].strip('\"\' ')
+                    self.session_tracker.record_command(username=target_user, source_ip="LOCAL_SYSTEM", command=cmd, tty=target_tty)
                     log_data = {"user": target_user, "ip": ip, "event": "SHELL_COMMAND_AUDIT", "timestamp": time.ctime(log_event_time), "source_file": source_file}
                     self.write_log_json(log_data)
                     return

